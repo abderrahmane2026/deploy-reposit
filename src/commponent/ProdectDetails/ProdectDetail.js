@@ -63,13 +63,10 @@ function ProdectDetail() {
           </div>
 
           <h3>Description:</h3>
-          <p>
-            Note that the development build is not optimized. To create a
-            production build, use appropriate tools and best practices.
-          </p>
+          <p>{product.description}</p>
 
           <div className="btn-container">
-            <button onClick={() => addToCart(product.id)}>
+            <button onClick={() => addToCart(product._id)}>
               <FaShoppingCart />
               <span> Add to Cart </span>
             </button>
