@@ -1,15 +1,33 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FaRegHeart, FaRegStar, FaShoppingCart, FaStar } from "react-icons/fa";
 import Breadcrum from "../../Breadcrum/Breadcrum";
 import { ShopContext } from "../../Context/ShopContext";
 import "./ProdectDetail.css";
+import axios from "axios";
 
 function ProdectDetail() {
-  const { all_product, addToCart } = useContext(ShopContext);
+  const { addToCart } = useContext(ShopContext);
   const { prodectId } = useParams();
-  const product = all_product.find((e) => e.id === Number(prodectId));
-  const [mainImage, setMainImage] = useState(product.image);
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`/api/products/${prodectId}`);
+        console.log(response.data);
+        setProduct(response.data);
+      } catch (error) {
+        console.log("Error fetching data", error);
+      }
+    };
+
+    fetchProduct();
+  }, [prodectId]);
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="product-detail">
@@ -18,7 +36,7 @@ function ProdectDetail() {
       <div className="detail-page">
         <div className="image-container">
           <div className="global-img">
-            <img src={mainImage} alt={product.name} />
+            <img src={product.image} alt={product.name} />
           </div>
         </div>
 
@@ -28,7 +46,7 @@ function ProdectDetail() {
             small <span>title</span>
           </h3>
           <h2>
-            ${product.new_price.toFixed(2)} <del>${product.old_price.toFixed(2)}</del>
+            ${product.price} {/* <del>${product.old_price.toFixed(2)}</del> */}
           </h2>
           <div className="rating">
             <h3>Rating:</h3>
@@ -46,8 +64,8 @@ function ProdectDetail() {
 
           <h3>Description:</h3>
           <p>
-            Note that the development build is not optimized.
-            To create a production build, use appropriate tools and best practices.
+            Note that the development build is not optimized. To create a
+            production build, use appropriate tools and best practices.
           </p>
 
           <div className="btn-container">
@@ -61,10 +79,18 @@ function ProdectDetail() {
           </div>
 
           <div className="icons-container">
-            <a href="#"><i className="fa-brands fa-instagram"></i></a>
-            <a href="#"><i className="fa-brands fa-facebook"></i></a>
-            <a href="#"><i className="fa-brands fa-twitter"></i></a>
-            <a href="#"><i className="fa-brands fa-youtube"></i></a>
+            <a href="#">
+              <i className="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#">
+              <i className="fa-brands fa-facebook"></i>
+            </a>
+            <a href="#">
+              <i className="fa-brands fa-twitter"></i>
+            </a>
+            <a href="#">
+              <i className="fa-brands fa-youtube"></i>
+            </a>
           </div>
         </div>
       </div>

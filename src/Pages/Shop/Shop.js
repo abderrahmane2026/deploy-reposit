@@ -1,15 +1,31 @@
-import React from 'react'
-import { useState } from "react";
-import "./Shop.css"
-import Sidebar from './Sidebar/Sidebar'
-import SearchBar from './SearchBar/SearchBar'
-import Recommended from './Sidebar/Recommended/Recommended'
+import React from "react";
+import { useState, useEffect } from "react";
+import "./Shop.css";
+import Sidebar from "./Sidebar/Sidebar";
+import SearchBar from "./SearchBar/SearchBar";
+import Recommended from "./Sidebar/Recommended/Recommended";
 // import Prodect from '../../commponent/Prodect/Prodects'
-import Prodects from './Prodect/ProdectsShop'
-import all_product from '../../assetes/all_product'
-import ProdCard from '../../commponent/Card/ProdCard'
+import Prodects from "./Prodect/ProdectsShop";
+import ProdCard from "../../commponent/Card/ProdCard";
+import axios from "axios";
 
 export default function Shop() {
+  const [all_product, setall_product] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("/api/products");
+        setall_product(response.data);
+        console.log(all_product);
+        console.log(response.data);
+      } catch (error) {
+        console.error("error fetching data", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -21,7 +37,8 @@ export default function Shop() {
   };
 
   const filteredItems = all_product.filter(
-    (all_product) => all_product.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
+    (all_product) =>
+      all_product.name.toLowerCase().indexOf(query.toLowerCase()) !== -1
   );
 
   // ----------- Radio Filtering -----------
@@ -45,42 +62,33 @@ export default function Shop() {
     // Applying selected filter
     if (selected) {
       filteredProducts = filteredProducts.filter(
-        ({ category ,company , new_price, name }) =>
+        ({ category, company, new_price, name }) =>
           category === selected ||
           company === selected ||
           new_price === selected ||
           name === selected
-
       );
     }
 
-    return filteredProducts.map(
-      ({id, image,name ,category, new_price,old_price }) => (
-        
-        <ProdCard
-          key={Math.random()}
-          id={id}
-          image={image}
-          name={name}
-          category={category}
-          old_price={old_price}
-          new_price={new_price}
-        />
-        
-      )
-    );
+    return filteredProducts.map((product) => (
+      <ProdCard
+        key={product._id}
+        id={product._id}
+        image={product.image}
+        name={product.name}
+        category={product.category}
+        old_price={product.price}
+      />
+    ));
   }
 
   const result = filteredData(all_product, selectedCategory, query);
   return (
     <div>
-
-      <Sidebar  handleChange={handleChange}/>
-      <SearchBar query={query} handleInputChange={handleInputChange}/>
-      <Recommended handleClick={handleClick}/>
-      <Prodects result={result}/>
-      
-
+      <Sidebar handleChange={handleChange} />
+      <SearchBar query={query} handleInputChange={handleInputChange} />
+      <Recommended handleClick={handleClick} />
+      <Prodects result={result} />
     </div>
-  )
+  );
 }

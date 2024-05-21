@@ -1,27 +1,42 @@
-import React, { createContext, useState } from 'react';
-import all_product from '../assetes/all_product'; 
-
-
+import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
 export const ShopContext = createContext(null);
 
-function getDefaultCart(){
-  let cart = {};
-  for(let i = 0; i < all_product.length; i++){
-      cart[i] = 0;
-  }
-  return cart;
-}
-
 function ShopContextProvider(props) {
+  const [all_product, setall_product] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("/api/products");
+        setall_product(response.data);
+        console.log(all_product);
+        console.log(response.data);
+      } catch (error) {
+        console.error("error fetching data", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  function getDefaultCart() {
+    let cart = {};
+    for (let i = 0; i < all_product.length; i++) {
+      cart[i] = 0;
+    }
+    return cart;
+  }
+
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
   const addToCart = (itemId) => {
-    setCartItems(prev => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-    alert("Added to cart")
+    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+    alert("Added to cart");
   };
 
   const removeFromCart = (itemId) => {
-    setCartItems(prev => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
   };
 
   const contextValue = {
