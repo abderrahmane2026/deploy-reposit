@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaHeart, FaRegHeart, FaShoppingCart, FaUser } from "react-icons/fa";
 import logo from "../../assetes/logo/logo.png"
 import Navbar from 'react-bootstrap/Navbar';
@@ -8,6 +8,18 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 
 function Header() {
+  const navigate = useNavigate(); 
+  window.localStorage.setItem("user","uiehhuieh")
+  const handleProfileOnClick = () => {
+    console.log(window.localStorage.getItem('user')); 
+    if(window.localStorage.getItem('user')!=null){
+      navigate('/Dashboard'); 
+    }else{
+      navigate("/Login")
+      console.log('you are not logged in'); 
+    }
+  }
+
   return (
     <Navbar expand="lg" className="custom-navbar">
       <Container>
@@ -25,7 +37,7 @@ function Header() {
           <Nav className="ml-auto header-links">
             <Nav.Link as={Link} to="/Favorit" style={{fontWeight:"600" ,fontSize:"20px"}}><FaRegHeart /></Nav.Link>
             <Nav.Link as={Link} to="/ShoppingCart" style={{fontWeight:"600" ,fontSize:"20px"}}><FaShoppingCart /></Nav.Link>
-            <Nav.Link as={Link} to="/Login" style={{fontWeight:"600" ,fontSize:"20px"}}><FaUser /></Nav.Link>
+            <Nav.Link style={{fontWeight:"600" ,fontSize:"20px"}} onClick={handleProfileOnClick}><FaUser /></Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

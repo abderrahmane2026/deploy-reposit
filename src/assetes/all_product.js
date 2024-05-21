@@ -1,7 +1,7 @@
-import p1_img from "./prodectImages/product_1.png";
-import p2_img from "./prodectImages/product_2.png";
-import p3_img from "./prodectImages/product_3.png";
-import p4_img from "./prodectImages/product_4.png";
+import p1_img from "./picturs/catigory/Tv.png";
+import p2_img from "./picturs/catigory/headphone.png";
+import p3_img from "./picturs/catigory/screen.png";
+import p4_img from "./picturs/catigory/laptop.png";
 import p5_img from "./prodectImages/product_5.png";
 import p6_img from "./prodectImages/product_6.png";
 import p7_img from "./prodectImages/product_7.png";
@@ -38,13 +38,10 @@ import p36_img from "./prodectImages/product_36.png";
 let all_product = [
   {
     id: 1,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    name: "Hp laptupe",
     category: "Phone",
     image: p1_img,
-    image_1: p2_img,
-    image_2: p2_img,
-    image_3: p3_img,
-    image_4: p4_img,
+    
 
 
 
@@ -72,7 +69,7 @@ let all_product = [
   },
   {
     id: 4,
-    name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    name: "Hp laptupe",
     category: "Phone",
     image: p4_img,
     

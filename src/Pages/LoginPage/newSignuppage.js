@@ -95,7 +95,7 @@ const handleInput = (event) => {
           <div className="col-md-6 right-box">
             <div className="row align-items-center">
               <div className="header-text mb-4">
-                <h1>SingUp</h1>
+                <h1>SignUp</h1>
                 <p>hollo .</p>
               </div>
 
@@ -172,7 +172,7 @@ const handleInput = (event) => {
                 </div>
               </div>
               <div className="input-group mb-3">
-                <button className="btn btn-lg btn-primary w-100 mb-2 fs-6">SingUp</button>
+                <button className="btn btn-lg btn-primary w-100 mb-2 fs-6">SignUp</button>
               </div>
 
               <div className="err-masseg ">

@@ -1,10 +1,7 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaBoxOpen, FaUser, FaList, FaCog, FaShoppingCart, FaSignOutAlt, FaBars } from 'react-icons/fa';
-import {  Link } from 'react-router-dom';
-import "./Userdeashbord.css"
-
-
+import { Link } from 'react-router-dom';
+import "./Userdeashbord.css";
 
 export default function UserSidebare() {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -13,69 +10,57 @@ export default function UserSidebare() {
     setIsCollapsed(!isCollapsed);
   };
 
-  return (
-    <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsCollapsed(true);
+      } else {
+        setIsCollapsed(false);
+      }
       
+    };
+
+    handleResize(); // Set initial state
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return (
+    <div className={`deachbord-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
       <button className="collapse-btn" onClick={handleCollapse}>
         <FaBars />
       </button>
       <ul>
         <li>
-          <button>
-            <Link to={"AddProdect"}>
-           
-            <FaBoxOpen />
-            {!isCollapsed && ' Add Product'}
-            </Link>
-          </button>
-        </li>
-        <li>
-          <button>
-            <Link to={""}>
-            
+          <Link to="account">
             <FaUser />
             {!isCollapsed && ' Account'}
-            </Link>
-          </button>
+          </Link>
         </li>
+           
         <li>
-          <button>
-          <Link to={"prodects"}>
-            <FaList />
-            {!isCollapsed && ' List of Products'}
-            </Link>
-          </button>
-        </li>
-        <li>
-          <button>
-          <Link to={"setting"}>
+          <Link to="settings">
             <FaCog />
             {!isCollapsed && ' Settings'}
-            </Link>
-          </button>
+          </Link>
         </li>
         <li>
-          <button>
-          <Link to={"Orders"}>
-            <FaShoppingCart />
-            {!isCollapsed && ' Orders'}
-            </Link>
-          </button>
+          <Link to="ShoppingCart">
+            <FaCog />
+            {!isCollapsed && ' Shopping Cart'}
+          </Link>
         </li>
+        
         <li>
-          <button>
-            <Link to={"/Login"}>
-           
+          <Link to="/login">
             <FaSignOutAlt />
             {!isCollapsed && ' Logout'}
-            </Link>
-          </button>
+          </Link>
         </li>
       </ul>
     </div>
   );
-
-    
-    
-  
 }

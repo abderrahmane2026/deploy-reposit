@@ -43,7 +43,7 @@ export default function AdminSidebare() {
         <li>
           <Link to="Sallers">
             <FaBoxOpen />
-            {!isCollapsed && ' Sallers'}
+            {!isCollapsed && ' Sellers'}
           </Link>
         </li>
         

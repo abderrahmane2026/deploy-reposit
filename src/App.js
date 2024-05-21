@@ -61,12 +61,17 @@ function App() {
 
        {/* dashboard vendeur */}
 
-        <Route path='/Dashbord' element={ role == 'vendeure' ? <Vendeurdeashbord/> : role == 'client' ? <Userdeashbord/> : <Admindeashbord/>}>
+        <Route path='/Dashboard' element={ role == 'vendeure' ? <Vendeurdeashbord/> : role == 'client' ? <Userdeashbord/> : <Admindeashbord/>}>
           <Route path='Account' element={<AccountPage/>}/>
           <Route path='AddProduct' element={ <AddProduct/>}/>
           <Route path='settings' element={<Settings/>}/>
           <Route path='orders' element={<OrdersPage/>}/>
           <Route path='products' element={<ProdectList/>}/>
+          <Route path="users" element={<Users />} />
+          <Route path="Sallers" element={<Sellers />} />
+          <Route path="settings" element={<Setting />} />
+          <Route path="reports" element={<Reports/>} />
+          <Route path="ShoppingCart" element={<ShoppingCart/>} />
         </Route>
 
 
