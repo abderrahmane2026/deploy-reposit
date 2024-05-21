@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Link, useNavigate} from "react-router-dom"
 import { ShopContext } from "../../Context/ShopContext";
 import { MdDelete } from "react-icons/md";
 import "./ShoppingCart.css";
@@ -12,6 +13,7 @@ export default function ShoppingCart() {
   const [phone, setPhone] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
   const [showOrderForm, setShowOrderForm] = useState(false);
+  const navigate = useNavigate();
 
   const handleOrderSubmit = async (e) => {
     e.preventDefault();
@@ -28,8 +30,11 @@ export default function ShoppingCart() {
       .post("/api/order/submit", formData)
       .then((response) => {
         console.log(response.data);
+        alert("you order is submit");
+        navigate("/");
       })
       .catch((error) => {
+        alert("you order is submit");
         console.log(error);
       });
   };
