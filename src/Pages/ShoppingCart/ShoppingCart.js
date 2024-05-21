@@ -2,81 +2,36 @@ import React, { useContext, useState } from "react";
 import { ShopContext } from "../../Context/ShopContext";
 import { MdDelete } from "react-icons/md";
 import "./ShoppingCart.css";
+import axios from "axios";
 
 export default function ShoppingCart() {
   const { all_product, cartItems, removeFromCart } = useContext(ShopContext);
-  const [customerName, setCustomerName] = useState("");
-  const [customerEmail, setCustomerEmail] = useState("");
-  const [customerAddress, setCustomerAddress] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [adress, setAdress] = useState("");
+  const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
-  const [customerPhone, setCustomerPhone] = useState("");
   const [showOrderForm, setShowOrderForm] = useState(false);
 
   const handleOrderSubmit = async (e) => {
     e.preventDefault();
 
-    // const orderDetails = {
-    //   name: customerName,
-    //   email: customerEmail,
-    //   address: customerAddress,
-    //   phone: customerPhone,
-    //   paymentMethod,
-    // };
+    const formData = {
+      name,
+      email,
+      address, // Corrected from 'adress'
+      phone,
+      paymentMethod,
+    };
 
-    // const vendorOrders = all_product
-    //   .filter((product) => cartItems[product._id] > 0)
-    //   .reduce((acc, product) => {
-    //     const vendorId = product.vendorId || "tayeb"; // Assuming each product has a vendorId
-    //     if (!acc[vendorId]) {
-    //       acc[vendorId] = [];
-    //     }
-    //     acc[vendorId].push({
-    //       id: product._id,
-    //       name: product.name,
-    //       quantity: cartItems[product._id],
-    //       price: product.price,
-    //       total: product.price * cartItems[product._id],
-    //     });
-    //     return acc;
-    //   }, {});
-
-    // for (const vendorId in vendorOrders) {
-    //   const vendorOrder = {
-    //     ...orderDetails,
-    //     items: vendorOrders[vendorId],
-    //   };
-
-    //   try {
-    //     const response = await fetch(`/api/vendors/${vendorId}/orders`, {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify(vendorOrder),
-    //     });
-
-    //     if (response.ok) {
-    //       console.log(`Order sent to vendor ${vendorId}`);
-    //     } else {
-    //       console.error(`Failed to send order to vendor ${vendorId}`);
-    //     }
-    //   } catch (error) {
-    //     console.error(`Error sending order to vendor ${vendorId}:`, error);
-    //   }
-    // }
-
-    // // Optionally, clear the form and cart after submission
-    // setCustomerName("");
-    // setCustomerEmail("");
-    // setCustomerAddress("");
-    // setCustomerPhone("");
-    // setPaymentMethod("");
-    // setShowOrderForm(false);
-    // // clearCart(); // Implement this function to clear the cart
+    axios
+      .post("/api/order/submit", formData)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -137,7 +92,7 @@ export default function ShoppingCart() {
                 type="text"
                 id="name"
                 value={name}
-                onChange={(e) => setCustomerName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 required
               />
             </div>
@@ -147,7 +102,7 @@ export default function ShoppingCart() {
                 type="email"
                 id="email"
                 value={email}
-                onChange={(e) => setCustomerEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -156,8 +111,8 @@ export default function ShoppingCart() {
               <input
                 type="text"
                 id="address"
-                value={adress}
-                onChange={(e) => setCustomerAddress(e.target.value)}
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
                 required
               />
             </div>
@@ -167,7 +122,7 @@ export default function ShoppingCart() {
                 type="text"
                 id="phone"
                 value={phone}
-                onChange={(e) => setCustomerPhone(e.target.value)}
+                onChange={(e) => setPhone(e.target.value)}
                 required
               />
             </div>
