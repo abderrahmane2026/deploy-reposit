@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './OrdersePage.css'; // Import the CSS file
-
-const sampleProducts = [
-  { id: 1, name: 'Product 1', quantity: 5, status: 'confirmed' },
-  { id: 2, name: 'Product 2', quantity: 3, status: 'noted' },
-  { id: 3, name: 'Product 3', quantity: 8, status: 'confirmed' },
-  { id: 4, name: 'Product 4', quantity: 2, status: 'noted' },
-];
+import './OrderPage.css'; // Import the CSS file
 
 const OrderPage = () => {
-  const [products, setProducts] = useState(sampleProducts);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('/api/products'); // Replace with your actual API endpoint
+        setProducts(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleDelete = (productId) => {
     // Delete product logic (not implemented in this example)
@@ -24,6 +34,14 @@ const OrderPage = () => {
     );
     setProducts(updatedProducts);
   };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div className="order-container">
