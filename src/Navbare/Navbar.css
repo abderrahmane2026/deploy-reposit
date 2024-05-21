@@ -1,0 +1,12 @@
+.search-bar{
+    display: flex;
+    justify-content: space-between;
+}
+.d-flex{
+    margin-right: 30%;
+}
+.nav-link{
+    margin-right: 10%;
+    font-size: 30px;
+
+}

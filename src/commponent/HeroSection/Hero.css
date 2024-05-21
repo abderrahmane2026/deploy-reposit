@@ -1,0 +1,141 @@
+.Hero-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 20px;
+    margin: 20px 60px 50px 60px;
+    padding: 0px 30px 50px 50px;
+    background-color: #f0f8ff;
+}
+
+.hero-img {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+
+.hero-img img {
+    width: 80%;
+    max-width: 100%;
+}
+
+.hero-dicription {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 50px;
+    width: 50%;
+}
+
+.hero-dicription h1 {
+    text-transform: uppercase;
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.hero-dicription p {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    color: rgba(0, 0, 0, 0.703);
+    line-height: 1.5;
+}
+
+.hero-dicription button {
+    width: 150px;
+    font-weight: 500;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 2px solid rgba(0, 0, 0, 0.502);
+    transition: 0.3s;
+}
+
+.hero-dicription button:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.hero-dicription a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .Hero-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .hero-img {
+        width: 80%;
+    }
+
+    .hero-dicription {
+        padding-left: 0;
+        width: 100%;
+    }
+
+    .hero-dicription h1 {
+        font-size: 40px;
+    }
+
+    .hero-dicription p {
+        font-size: 18px;
+    }
+
+    .hero-dicription button {
+        width: 140px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .Hero-section {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .hero-img {
+        padding-top: 20px;
+    }
+
+    .hero-dicription h1 {
+        font-size: 30px;
+    }
+
+    .hero-dicription p {
+        font-size: 16px;
+    }
+
+    .hero-dicription button {
+        width: 120px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Hero-section {
+        margin: 5px;
+        padding: 5px;
+    }
+
+    .hero-dicription h1 {
+        font-size: 24px;
+    }
+
+    .hero-dicription p {
+        font-size: 14px;
+    }
+
+    .hero-dicription button {
+        width: 100px;
+        font-size: 12px;
+    }
+}

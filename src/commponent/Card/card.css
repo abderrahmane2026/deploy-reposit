@@ -1,0 +1,86 @@
+
+.card-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    padding: 5px;
+    width: 200px;
+    
+    border: 1px solid rgb(255, 255, 255);
+    height: 370px;
+    margin: 10px;
+}
+.card-container:hover{
+    border: 1px solid rgba(0, 0, 0, 0.466);
+}
+.card-container .image{
+    width: 90%;
+  
+   
+   
+    margin-bottom: 10px;
+    
+}
+.card-container .image img{
+   margin-left:10px ;
+}
+
+.card-container .description .name h4{
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 5px;
+}
+.card-container .ratting{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   margin-bottom:5px ;
+}
+.card-container .ratting i{
+    font-size: 15px;
+    color: rgb(241, 218, 6);
+    text-decoration: none;
+    margin-right: 5px;
+    
+   
+
+}
+.card-container .ratting p{
+    font-size: 15px;
+    margin-bottom: 0px;
+    margin-left: 5px;
+}
+.card-container .price{
+    display: flex;
+   align-items: center;
+
+}
+.card-container .price h4{
+    font-size:18px;
+    font-weight: 500;
+    margin-right: 10px;
+    
+}
+.card-container .price h5{
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.612);
+    margin-bottom: 3px;
+}
+.card-container button{
+    
+    font-size: 15px;
+    border: 1px solid;
+    background-color: black;
+    padding: 6px 20px 6px 20px;
+    color: white;
+    border-radius: 10px;
+
+}
+.card-container button:hover{
+     background-color: white;
+     color: black;
+     border: 1px solid;
+}

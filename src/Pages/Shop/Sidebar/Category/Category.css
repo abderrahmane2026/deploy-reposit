@@ -1,0 +1,35 @@
+/* Base styles */
+.sidebar-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar-label-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.checkmark {
+  margin-right: 0.5rem;
+}
+
+.category-text {
+  display: inline;
+}
+
+.category-icon {
+  display: none;
+  margin-left: 0.5rem;
+}
+
+/* Responsive styles */
+@media (max-width: 576px) {
+  .category-text {
+    display: none;
+  }
+
+  .category-icon {
+    display: inline;
+  }
+}

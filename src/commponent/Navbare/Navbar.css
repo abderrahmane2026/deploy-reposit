@@ -1,0 +1,51 @@
+.nav-link {
+    margin: 10px;
+  }
+  
+  .nav-link  a{
+    display: block; /* Ensures the width is applied */
+   
+    font-weight: 600;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .container {
+    width: 100%;
+    margin: 0;
+  }
+  
+  .navbar {
+    justify-content: space-between;
+    z-index: 1000; /* Ensure the header is above other elements */
+  }
+  
+  .navbar-brand {
+    margin-right: 5% !important;
+  }
+  
+  .header-links {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  @media (max-width: 768px) {
+    .header-links {
+      margin-left: 0;
+      justify-content: flex-end;
+    }
+    
+    .navbar-collapse {
+      text-align: center;
+    }
+  
+    .nav-link {
+      margin: 5px 0;
+    }
+  
+    .nav-link a {
+      width: auto; /* Override width for mobile to fit screen */
+    }
+  }
+  

@@ -1,0 +1,29 @@
+.populer-continer{
+   padding-top: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+   
+}
+.populer-continer h1{
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 50px;
+
+}
+.populer-continer h1 hr{
+   width: 130%;
+    height: 4px;
+    border: none;
+    border-radius: 10px;
+    background: red;
+    margin-bottom: 0;
+}
+.prod-continer{
+    display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+}
