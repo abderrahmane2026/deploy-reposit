@@ -5,28 +5,34 @@ const AddProduct = () => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null);
   const [category, setCategory] = useState('');
   const [company, setCompany] = useState('');
 
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    fetch('https://fakestoreapi.com/products', {
-      method: "POST",
-      body: JSON.stringify({
-        title,
-        price: parseFloat(price),
-        description,
-        image,
-        category,
-        company
-      })
+
+    const formData = new FormData();
+    formData.append('name', title);
+    formData.append('price', parseFloat(price));
+    formData.append('description', description);
+    formData.append('image', image);
+    formData.append('category', category);
+    formData.append('company', company);
+
+    fetch('/api/products', {
+      method: 'POST',
+      body: formData,
     })
-    .then(res => res.json())
-    .then(console.log('seccese'),
-      json => console.log(json))
-    .catch(err => console.error('Error:', err));
+      .then(res => res.json())
+      .then(json => {
+        console.log('Success:', json);
+      })
+      .catch(err => console.error('Error:', err));
   };
 
   return (
@@ -66,12 +72,11 @@ const AddProduct = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="image">Image URL</label>
+          <label htmlFor="image">Image</label>
           <input
             type="file"
             id="image"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+            onChange={handleImageChange}
             required
           />
         </div>
@@ -86,21 +91,21 @@ const AddProduct = () => {
             required
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="company">Company</label>
           <input
             type="text"
-            id="Company"
+            id="company"
             value={company}
             onChange={(e) => setCompany(e.target.value)}
             required
           />
         </div>
 
-        <div className='addproduct-button'>
+        <div className="addproduct-button">
           <button type="submit" className="submit-button">Add Product</button>
         </div>
-        
       </form>
     </div>
   );
