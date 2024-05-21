@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './OrderPage.css'; // Import the CSS file
+import './OrdersePage.css'; // Import the CSS file
 
-const OrderPage = () => {
+const OrdersPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -79,4 +79,4 @@ const OrderPage = () => {
   );
 };
 
-export default OrderPage;
+export default OrdersPage;
