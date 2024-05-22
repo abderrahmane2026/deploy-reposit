@@ -50,7 +50,7 @@ function App() {
          <Route path='/Favorit' element={<FavoritPage/>}/>
         <Route path='/Favorit' element={<Userdeashbord/>}/>
        
-        {/* <Route path='/About' element={<About/>}/> */}
+        <Route path='/About' element={<About/>}/>
         <Route path='/Contact' element={<Contact/>}/>
         {/* <Route path='/Login' element={<LoginPage/>}/> */}
         <Route path='/Login' element={<NewLoginPage/>}/>

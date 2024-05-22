@@ -113,3 +113,64 @@
 .icons-container a:hover {
   color: #3498db;
 }
+
+
+
+/* ggggg */
+
+
+.suggestions {
+  margin-top: 20px;
+}
+
+.suggestions-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.suggestion-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.suggestion-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.suggestion-item h3 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.suggestion-item p {
+  font-size: 1rem;
+  color: #333;
+}
+
+
+.related-products-list{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  
+}
+.related-products{
+  text-align: center;
+  
+}
+.related-products h2{
+  font-size: 40px;
+  font-weight: 700;
+ 
+}
+/* prodect Qt */
+.product-detail .description-container .quantity {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 0.5rem 0;
+}

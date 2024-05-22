@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './AddProduct.css';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 const AddProduct = () => {
   const [title, setTitle] = useState('');
@@ -8,6 +10,7 @@ const AddProduct = () => {
   const [image, setImage] = useState(null);
   const [category, setCategory] = useState('');
   const [company, setCompany] = useState('');
+  const [quantity, setQuantity] = useState(''); // New state for quantity
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -23,6 +26,7 @@ const AddProduct = () => {
     formData.append('image', image);
     formData.append('category', category);
     formData.append('company', company);
+    formData.append('quantity', parseInt(quantity)); // Append quantity to formData
 
     fetch('/api/products', {
       method: 'POST',
@@ -30,9 +34,15 @@ const AddProduct = () => {
     })
       .then(res => res.json())
       .then(json => {
+        <Popup>
+          add product
+        </Popup>
         console.log('Success:', json);
       })
       .catch(err => console.error('Error:', err));
+    <Popup>
+      don't add product
+    </Popup>
   };
 
   return (
@@ -83,22 +93,44 @@ const AddProduct = () => {
 
         <div className="form-group">
           <label htmlFor="category">Category</label>
-          <input
-            type="text"
+          <select
             id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             required
-          />
+          >
+            <option value="">Select a category</option>
+            <option value="Screen">Screen</option>
+            <option value="Phone">Phone</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Computer">Computer</option>
+          </select>
         </div>
 
         <div className="form-group">
           <label htmlFor="company">Company</label>
-          <input
-            type="text"
+          <select
             id="company"
             value={company}
             onChange={(e) => setCompany(e.target.value)}
+            required
+          >
+            <option value="">Select a company</option>
+            <option value="Hp">HP</option>
+            <option value="Dell">Dell</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Iphone">IPhone</option>
+            <option value="Xiaomi">Xiaomi</option>
+          </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="quantity">Quantity</label> {/* New quantity field */}
+          <input
+            type="number"
+            id="quantity"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
             required
           />
         </div>
