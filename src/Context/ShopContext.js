@@ -4,49 +4,61 @@ import axios from "axios";
 export const ShopContext = createContext(null);
 
 function ShopContextProvider(props) {
-  const [all_product, setall_product] = useState([]);
-  const [cartItems, setCartItems] = useState({});
+  const [all_product, setAllProduct] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get("/api/products");
-        setall_product(response.data);
-        // setCartItems(getDefaultCart(response.data)); // Initialize the cart based on fetched products
+        setAllProduct(response.data);
       } catch (error) {
         console.error("Error fetching data", error);
       }
     };
 
+    const fetchCart = async () => {
+      try {
+        const clientId = "some-client-id"; // Replace with actual client ID logic
+        const response = await axios.get(`/api/cart/${clientId}`);
+        setCartItems(response.data.products);
+      } catch (error) {
+        console.error("Error fetching cart", error);
+      }
+    };
+
     fetchProducts();
+    fetchCart();
   }, []);
 
-  // function getDefaultCart(products) {
-  //   // let cart = {};
-  //   // for (let product of products) {
-  //   //   cart[product._id] = 0;
-  //   // }
-  //   // return cart;
-
-  //   let cart = [];
-  //   return cart;
-  // }
-
-  const addToCart = async (itemId) => {
-    // setCartItems((prev) => ({ ...prev, [itemId]: (prev[itemId] || 0) + 1 }));
-    // alert("Added to cart");
-    await axios.post(`/api/${itemId}/add`);
+  const addToCart = async (productId) => {
+    try {
+      const clientId = "some-client-id"; // Replace with actual client ID logic
+      const response = await axios.post(
+        `/api/cart/${clientId}/add/${productId}`
+      );
+      setCartItems(response.data.products);
+    } catch (error) {
+      console.error("Error adding to cart", error);
+    }
   };
 
-  const removeFromCart = (itemId) => {
-    setCartItems((prev) => {
-      const newCount = (prev[itemId] || 1) - 1;
-      if (newCount <= 0) {
-        const { [itemId]: _, ...rest } = prev;
-        return rest;
-      }
-      return { ...prev, [itemId]: newCount };
-    });
+  const removeFromCart = async (productId) => {
+    try {
+      const clientId = "some-client-id"; // Replace with actual client ID logic
+      const response = await axios.post(
+        `/api/cart/${clientId}/remove/${productId}`
+      );
+      setCartItems(response.data.products);
+    } catch (error) {
+      console.error("Error removing from cart", error);
+    }
+  };
+
+  const clearCart = async () => {
+    const clientId = "some-client-id"; // Replace with actual client ID logic
+    await axios.post(`/api/cart/${clientId}/clear`);
+    setCartItems([]); // Clear the local cart state
   };
 
   const contextValue = {
@@ -54,6 +66,7 @@ function ShopContextProvider(props) {
     cartItems,
     addToCart,
     removeFromCart,
+    clearCart,
   };
 
   return (

@@ -1,12 +1,13 @@
-import React, { useContext, useState } from "react";
-import { Link, useNavigate} from "react-router-dom"
+import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../../Context/ShopContext";
 import { MdDelete } from "react-icons/md";
 import "./ShoppingCart.css";
 import axios from "axios";
 
 export default function ShoppingCart() {
-  const { all_product, cartItems, removeFromCart } = useContext(ShopContext);
+  const { all_product, cartItems, removeFromCart, clearCart } =
+    useContext(ShopContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -21,23 +22,48 @@ export default function ShoppingCart() {
     const formData = {
       name,
       email,
-      address, // Corrected from 'adress'
+      address,
       phone,
       paymentMethod,
     };
 
-    axios
-      .post("/api/order/submit", formData)
-      .then((response) => {
-        console.log(response.data);
-        alert("you order is submit");
-        navigate("/");
-      })
-      .catch((error) => {
-        alert("you order is submit");
-        console.log(error);
+    try {
+      const response = await axios.post("/api/order/submit", formData);
+      console.log(response.data);
+      alert("Your order is submitted");
+
+      // Clear the cart
+      const clientId = "some-client-id"; // Replace with actual client ID logic
+      await axios.post(`/api/cart/${clientId}/clear`);
+
+      // Update the product quantities
+      all_product.forEach(async (product) => {
+        if (cartItems[product._id]) {
+          try {
+            await axios.put(`/api/products/${product._id}`, {
+              quantity: product.quantity - cartItems[product._id],
+            });
+            console.log(`Updated product ${product._id} quantity`);
+          } catch (error) {
+            console.error(
+              `Error updating product ${product._id} quantity`,
+              error
+            );
+          }
+        }
       });
+
+      clearCart(); // Clear the local cart state
+      navigate("/");
+    } catch (error) {
+      alert("Error submitting your order");
+      console.log(error);
+    }
   };
+
+  if (!all_product || all_product.length === 0) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="shopping-cart-page">
@@ -51,10 +77,11 @@ export default function ShoppingCart() {
           <p>Remove</p>
         </div>
         <hr />
-        {all_product.map((product) => {
-          if (cartItems[product._id] > 0) {
+        {cartItems.map((cartItem) => {
+          const product = all_product.find((p) => p._id === cartItem.productID);
+          if (product) {
             return (
-              <div key={product._id}>
+              <div key={cartItem.productID}>
                 <div className="cartitem-format">
                   <img
                     src={product.image}
@@ -64,9 +91,9 @@ export default function ShoppingCart() {
                   <p>{product.name}</p>
                   <p>{product.price}</p>
                   <button className="cartitems-quantity">
-                    {cartItems[product._id]}
+                    {cartItem.quantity}
                   </button>
-                  <p>{product.price * cartItems[product._id]}</p>
+                  <p>{product.price * cartItem.quantity}</p>
                   <button
                     className="remove-button"
                     onClick={() => {
@@ -80,6 +107,7 @@ export default function ShoppingCart() {
               </div>
             );
           }
+          return null;
         })}
       </div>
 

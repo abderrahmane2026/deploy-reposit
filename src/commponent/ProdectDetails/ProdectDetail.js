@@ -1,16 +1,18 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FaRegHeart, FaRegStar, FaShoppingCart, FaStar } from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Breadcrum from "../../Breadcrum/Breadcrum";
 import { ShopContext } from "../../Context/ShopContext";
-import { FavoriteContext } from "../../Context/FavoritContext"; 
+import { FavoriteContext } from "../../Context/FavoritContext";
 import "./ProdectDetail.css";
 import axios from "axios";
 import ProdCard from "../Card/ProdCard";
 
 function ProdectDetail() {
   const { addToCart } = useContext(ShopContext);
-  const { addToFavorites } = useContext(FavoriteContext); 
+  const { addToFavorites } = useContext(FavoriteContext);
   const { prodectId } = useParams();
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -35,9 +37,13 @@ function ProdectDetail() {
         const response = await axios.get("/api/products");
         let allProducts = response.data;
 
-        const related = allProducts.filter(p =>
-          p.name.toLowerCase().includes(productName.toLowerCase()) && p._id !== product._id
-        ).slice(0, 4);
+        const related = allProducts
+          .filter(
+            (p) =>
+              p.name.toLowerCase().includes(productName.toLowerCase()) &&
+              p._id !== product._id
+          )
+          .slice(0, 4);
 
         setRelatedProducts(related);
       } catch (error) {
@@ -62,12 +68,18 @@ function ProdectDetail() {
     localStorage.setItem(`rating-${prodectId}`, newRating);
   };
 
+  const handleAddToCart = (productId) => {
+    addToCart(productId);
+    toast.success("Added to cart!");
+  };
+
   if (!product) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="product-detail">
+      <ToastContainer />
       <Breadcrum product={product} />
 
       <div className="detail-page">
@@ -79,7 +91,9 @@ function ProdectDetail() {
 
         <div className="description-container">
           <h1>{product.name}</h1>
-          <h3>small <span>title</span></h3>
+          <h3>
+            small <span>title</span>
+          </h3>
           <h2>${product.price}</h2>
           <div className="rating">
             <h3>Rating:</h3>
@@ -96,17 +110,27 @@ function ProdectDetail() {
           <h3>Quantity:</h3>
           <p className="quantity">{product.quantity}</p>
           <div className="btn-container">
-            <button onClick={() => addToCart(product._id)}>
+            <button onClick={() => handleAddToCart(product._id)}>
               <FaShoppingCart />
               <span> Add to Cart </span>
             </button>
-            <button onClick={() => addToFavorites(product)}><FaRegHeart /></button>
+            <button onClick={() => addToFavorites(product)}>
+              <FaRegHeart />
+            </button>
           </div>
           <div className="icons-container">
-            <a href="#"><i className="fa-brands fa-instagram"></i></a>
-            <a href="#"><i className="fa-brands fa-facebook"></i></a>
-            <a href="#"><i className="fa-brands fa-twitter"></i></a>
-            <a href="#"><i className="fa-brands fa-youtube"></i></a>
+            <a href="#">
+              <i className="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#">
+              <i className="fa-brands fa-facebook"></i>
+            </a>
+            <a href="#">
+              <i className="fa-brands fa-twitter"></i>
+            </a>
+            <a href="#">
+              <i className="fa-brands fa-youtube"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -114,7 +138,7 @@ function ProdectDetail() {
       <div className="related-products mt-3 ms-3">
         <h2>Related Products</h2>
         <div className="related-products-list d-flex mt-5">
-          {relatedProducts.map(relatedProduct => (
+          {relatedProducts.map((relatedProduct) => (
             <ProdCard
               key={relatedProduct._id}
               id={relatedProduct._id}
