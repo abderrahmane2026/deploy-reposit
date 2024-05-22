@@ -1,63 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios'; // Assuming you're using axios for HTTP requests
-// import './Users.css'; // Import your CSS file
-// import Cookie from 'cookie-universal'
-
-// const Users = () => {
-//     const cookie = Cookie();
-//     const token = cookie.get("e-commerce");
-
-//     const [users, setUsers] = useState([]);
-
-//     useEffect(() => {
-        
-//         axios.get('/api/users',{
-//      headers:{
-//         Authorization:"bearer" = token,
-//      },
-//     })
-//       .then((data) =>setUsers(data.data))
-//       .catch((err) =>console.error('Error fetching users:', err));
-//             });
-
-// const usersShow = users.map((user,key)=><tr key={key}>
-//   <td>{user.id}</td>
-//   <td>{user.name}</td>
-//   <td>{user.email}</td>
-//  <td>{user.role}</td>
-// </tr>)
-
-
-//     return (
-//         <div className="users-container">
-//             <h2>Users</h2>
-//             <table className="users-table">
-//                 <thead>
-//                     <tr>
-//                         <th>User ID</th>
-//                         <th>Name</th>
-//                         <th>Email</th>
-//                         <th>Role</th>
-//                     </tr>
-//                 </thead>
-//                 <tbody>
-//                     {/* {usersShow} */}
-//                     {users.map(user => (
-//                         <tr key={user.id}>
-//             ;                <td>{user.id}</td>
-//                             <td>{user.name}</td>
-//                             <td>{user.email}</td>
-//                             <td>{user.role}</td>
-//                         </tr>
-//                     ))}
-//                 </tbody>
-//             </table>
-//         </div>
-//     );
-// };
-
-// export default Users;
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Assuming you're using axios for HTTP requests
 import './Users.css'; // Import your CSS file
@@ -79,6 +19,19 @@ const Users = () => {
             });
     }, []);
 
+    const handleDelete = (userId) => {
+        axios.delete(`/api/user/${userId}`)
+            .then(() => {
+                setUsers(users.filter(user => user.id !== userId));
+            })
+            .catch(err => console.error('Error deleting user:', err));
+    };
+
+    const handleEdit = (userId) => {
+        // Implement edit functionality here
+        console.log('Edit user:', userId);
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -97,18 +50,24 @@ const Users = () => {
                         <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                {users.map((user, index) => (
-    <tr key={index}>
-        <td>{index +1}</td> {/* Display the index */}
-        <td>{user.name}</td>
-        <td>{user.email}</td>
-        <td>{user.role}</td>
-    </tr>
-))}
-
+                    {users.map((user, index) => (
+                        <tr key={user.id}>
+                            <td>{index + 1}</td>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
+                            <td>{user.role}</td>
+                            <td>
+                                <div className="action-buttons">
+                                    <button className="edit-button" onClick={() => handleEdit(user.id)}>Edit</button>
+                                    <button className="delete-button" onClick={() => handleDelete(user.id)}>Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </div>
