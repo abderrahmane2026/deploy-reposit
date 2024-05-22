@@ -4,7 +4,7 @@
   background-color: #ffffff;
   padding: 10px;
   box-shadow: 2px 10px 3px rgba(0, 0, 0, 0.1);
-  position: fixed;
+  position: absolute;
 }
 
 .Shop-sidebar-container {

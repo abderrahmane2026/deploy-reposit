@@ -1,4 +1,4 @@
-
+//
 import { Link, useNavigate} from "react-router-dom"
 import "./newLoginpage.css"
 import loginpic from "../../assetes/withoutbackground/login.png"
@@ -9,12 +9,12 @@ import Form from 'react-bootstrap/Form';
 
 import axios from "axios";
 import LoadingSubmite from './Loading';
-import Cookie from "cookie-universal"
+import { userContext } from '../../Context/UserContext';
 
 export default function NewLoginPage() {
 
-     //cookie
-     const cookie = Cookie();
+   
+  
 
      //laoding 
      const[Loading,setLoading] = useState(false);
@@ -34,7 +34,8 @@ export default function NewLoginPage() {
 
 const [values, setvalues] = useState({
     email: '',
-    password: ''
+    password: '',
+    role:'',
   });
   
   
@@ -55,12 +56,13 @@ const handleInput = (event) => {
     
    
      try{
-        const {data} =  await axios.post("http://localhost:8081/loginn", values);
+        const {data} =  await axios.post("/api/user/login", values);
          setLoading(false);
            //cookie
     //    const token = res.data.token;
     //    cookie.set("e-commerse",token);
-          window.localStorage.setItem('user' , data.client)
+          window.localStorage.setItem('userr' , JSON.stringify(data.user))
+          console.log(data);
           navigate("/");
      }catch(err){
         console.log(err);

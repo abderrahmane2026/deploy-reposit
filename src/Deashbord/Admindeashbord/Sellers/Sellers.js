@@ -3,65 +3,51 @@ import axios from 'axios'; // Assuming you're using axios for HTTP requests
 import './Sellers.css'; // Import your CSS file
 
 const Sellers = () => {
-
-  const mockSellers = [
-    { id: 1, name: 'Seller 1', email: 'seller1@example.com' },
-    { id: 2, name: 'Seller 2', email: 'seller2@example.com' },
-    { id: 3, name: 'Seller 3', email: 'seller3@example.com' },
-  ];
-
-    const [sellers, setSellers] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Fetch sellers data from the database
-        axios.get('/api/sellers')
-            .then(response => {
-                setSellers(response.data);
+        axios.get('/api/user')
+            .then((response) => {
+                setUsers(response.data);
+                setLoading(false);
             })
-            .catch(error => {
-                console.error('Error fetching sellers:', error);
+            .catch((err) => {
+                setError(err.message);
+                setLoading(false);
             });
     }, []);
 
-    const handleDeleteSeller = (id) => {
-        // Implement the delete logic here
-        // For example:
-        // axios.delete(`/api/sellers/${id}`)
-        //     .then(response => {
-        //         // Update the sellers state after deletion
-        //         setSellers(prevSellers => prevSellers.filter(seller => seller.id !== id));
-        //     })
-        //     .catch(error => {
-        //         console.error('Error deleting seller:', error);
-        //     });
-    };
+    const sellers = users.filter(user => user.role === 'seller');
 
-    const handleEditSeller = (id) => {
-        // Implement the edit logic here
-    };
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
-        <div className="sellers-container">
+        <div className="users-container">
             <h2>Sellers</h2>
-            <table className="sellers-table">
+            <table className="users-table">
                 <thead>
                     <tr>
-                        <th>Seller ID</th>
+                        <th>User ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Actions</th>
+                        <th>Role</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {mockSellers.map(mockSellers => (
-                        <tr key={mockSellers.id}>
-                            <td>{mockSellers.id}</td>
-                            <td>{mockSellers.name}</td>
-                            <td>{mockSellers.email}</td>
-                            <td>
-                                <button onClick={() => handleEditSeller(mockSellers.id)}>Edit</button>
-                                <button onClick={() => handleDeleteSeller(mockSellers.id)}>Delete</button>
-                            </td>
+                    {sellers.map(seller => (
+                        <tr key={seller._id}>
+                            <td>{seller._id}</td>
+                            <td>{seller.name}</td>
+                            <td>{seller.email}</td>
+                            <td>{seller.role}</td>
                         </tr>
                     ))}
                 </tbody>

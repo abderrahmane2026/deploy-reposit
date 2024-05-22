@@ -1,37 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./OrdersePage.css"; // Import the CSS file
 
-const sampleProducts = [
-  { id: 1, name: 'Product 1', quantity: 5, status: 'confirmed' },
-  { id: 2, name: 'Product 2', quantity: 3, status: 'noted' },
-  { id: 3, name: 'Product 3', quantity: 8, status: 'confirmed' },
-  { id: 4, name: 'Product 4', quantity: 2, status: 'noted' },
-];
+const OrdersPage = () => {
+  const [products, setProducts] = useState([]);
 
-const OrderPage = () => {
-  const [products, setProducts] = useState(sampleProducts);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("/api/products");
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleDelete = (productId) => {
-    // Delete product logic (not implemented in this example)
     setProducts(products.filter((product) => product.id !== productId));
   };
 
   const handleAccept = (productId) => {
-    // Accept product logic (not implemented in this example)
     const updatedProducts = products.map((product) =>
       product.id === productId ? { ...product, status: "accepted" } : product
     );
     setProducts(updatedProducts);
   };
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
 
   return (
     <div className="order-container">
@@ -49,7 +45,7 @@ const OrderPage = () => {
         <tbody>
           {products.map((product) => (
             <tr key={product.id}>
-              <td>{parseInt(product._id)}</td>
+              <td>{product.id}</td>
               <td>{product.name}</td>
               <td>{product.quantity}</td>
               <td>{product.status}</td>

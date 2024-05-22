@@ -68,7 +68,7 @@ const Users = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get('https://fakestoreapi.com/users')
+        axios.get('/api/user')
             .then((response) => {
                 setUsers(response.data);
                 setLoading(false);
@@ -100,14 +100,15 @@ const Users = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {users.map(user => (
-                        <tr key={user.id}>
-                            <td>{user.id}</td>
-                            <td>{user.name.firstname} {user.name.lastname}</td>
-                            <td>{user.email}</td>
-                            <td>{user.role}</td>
-                        </tr>
-                    ))}
+                {users.map((user, index) => (
+    <tr key={index}>
+        <td>{index +1}</td> {/* Display the index */}
+        <td>{user.name}</td>
+        <td>{user.email}</td>
+        <td>{user.role}</td>
+    </tr>
+))}
+
                 </tbody>
             </table>
         </div>

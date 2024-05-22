@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Dropzone from 'react-dropzone';
@@ -25,6 +25,7 @@ const AccountPage = () => {
     console.log(values);
     console.log(profileImage);
   };
+  
 
   return (
     <div className="account-page">

@@ -32,8 +32,7 @@ import RequireAuth from './Pages/Auth/RequireAuth';
 import { userContext } from './Context/UserContext';
 
 function App() {
-  const {role} = userContext()
-  console.log('the role is : ' , role)
+  const {user} = userContext()
   return (
     <div className="App">
        <Header/>
@@ -61,9 +60,15 @@ function App() {
 
        {/* dashboard vendeur */}
 
-        <Route path='/Dashboard' element={ role == 'vendeure' ? <Vendeurdeashbord/> : role == 'client' ? <Userdeashbord/> : <Admindeashbord/>}>
+       <Route path='/Dashboard' element={
+          user?.role == 'seller' ? <Vendeurdeashbord/> :
+          user?.role == 'client' ? <Userdeashbord/> :
+          user?.role == 'admin' ? <Admindeashbord/> :
+          <NewLoginPage/>
+        }>
+          
           <Route path='Account' element={<AccountPage/>}/>
-          <Route path='AddProduct' element={ <AddProduct/>}/>
+          <Route path='AddProduct' element={<AddProduct/>}/>
           <Route path='settings' element={<Settings/>}/>
           <Route path='orders' element={<OrdersPage/>}/>
           <Route path='products' element={<ProdectList/>}/>
@@ -73,7 +78,7 @@ function App() {
           <Route path="reports" element={<Reports/>} />
           <Route path="ShoppingCart" element={<ShoppingCart/>} />
         </Route>
-
+      
 
         {/* deashbord admine */}
 

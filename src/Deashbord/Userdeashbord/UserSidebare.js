@@ -54,11 +54,14 @@ export default function UserSidebare() {
           </Link>
         </li>
         
-        <li>
-          <Link to="/login">
-            <FaSignOutAlt />
+        <li  >
+          <a onClick={() => {
+            window.localStorage.removeItem('userr')
+           window.location.href = '/'
+          }}>
+            <FaSignOutAlt  />
             {!isCollapsed && ' Logout'}
-          </Link>
+          </a>
         </li>
       </ul>
     </div>
