@@ -1,48 +1,49 @@
-import React, { useState } from 'react';
-import './AddProduct.css';
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
+import React, { useState } from "react";
+import "./AddProduct.css";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 const AddProduct = () => {
-  const [title, setTitle] = useState('');
-  const [price, setPrice] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
-  const [category, setCategory] = useState('');
-  const [company, setCompany] = useState('');
-  const [quantity, setQuantity] = useState(''); // New state for quantity
+  const [category, setCategory] = useState("");
+  const [company, setCompany] = useState("");
+  const [quantity, setQuantity] = useState(""); // New state for quantity
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('name', title);
-    formData.append('price', parseFloat(price));
-    formData.append('description', description);
-    formData.append('image', image);
-    formData.append('category', category);
-    formData.append('company', company);
-    formData.append('quantity', parseInt(quantity)); // Append quantity to formData
+    const user = JSON.parse(window.localStorage.getItem("userr"));
+    const userId = user?._id;
 
-    fetch('/api/products', {
-      method: 'POST',
-      body: formData,
-    })
-      .then(res => res.json())
-      .then(json => {
-        <Popup>
-          add product
-        </Popup>
-        console.log('Success:', json);
-      })
-      .catch(err => console.error('Error:', err));
-    <Popup>
-      don't add product
-    </Popup>
+    const formData = new FormData();
+    formData.append("name", title);
+    formData.append("price", parseFloat(price));
+    formData.append("description", description);
+    formData.append("image", image);
+    formData.append("category", category);
+    formData.append("company", company);
+    formData.append("quantity", parseInt(quantity)); // Append quantity to formData
+    formData.append("sellerId", userId);
+
+    try {
+      const response = await fetch("/api/products", {
+        method: "POST",
+        body: formData,
+      });
+      const json = await response.json();
+      console.log("Success:", json);
+      Popup.alert("Product added successfully");
+    } catch (err) {
+      console.error("Error:", err);
+      Popup.alert("Failed to add product");
+    }
   };
 
   return (
@@ -83,12 +84,7 @@ const AddProduct = () => {
 
         <div className="form-group">
           <label htmlFor="image">Image</label>
-          <input
-            type="file"
-            id="image"
-            onChange={handleImageChange}
-            required
-          />
+          <input type="file" id="image" onChange={handleImageChange} required />
         </div>
 
         <div className="form-group">
@@ -136,7 +132,9 @@ const AddProduct = () => {
         </div>
 
         <div className="addproduct-button">
-          <button type="submit" className="submit-button">Add Product</button>
+          <button type="submit" className="submit-button">
+            Add Product
+          </button>
         </div>
       </form>
     </div>

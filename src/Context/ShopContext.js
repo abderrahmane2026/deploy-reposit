@@ -12,7 +12,7 @@ function ShopContextProvider(props) {
       try {
         const response = await axios.get("/api/products");
         setall_product(response.data);
-        setCartItems(getDefaultCart(response.data)); // Initialize the cart based on fetched products
+        // setCartItems(getDefaultCart(response.data)); // Initialize the cart based on fetched products
       } catch (error) {
         console.error("Error fetching data", error);
       }
@@ -21,17 +21,21 @@ function ShopContextProvider(props) {
     fetchProducts();
   }, []);
 
-  function getDefaultCart(products) {
-    let cart = {};
-    for (let product of products) {
-      cart[product._id] = 0;
-    }
-    return cart;
-  }
+  // function getDefaultCart(products) {
+  //   // let cart = {};
+  //   // for (let product of products) {
+  //   //   cart[product._id] = 0;
+  //   // }
+  //   // return cart;
 
-  const addToCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: (prev[itemId] || 0) + 1 }));
-    alert("Added to cart");
+  //   let cart = [];
+  //   return cart;
+  // }
+
+  const addToCart = async (itemId) => {
+    // setCartItems((prev) => ({ ...prev, [itemId]: (prev[itemId] || 0) + 1 }));
+    // alert("Added to cart");
+    await axios.post(`/api/${itemId}/add`);
   };
 
   const removeFromCart = (itemId) => {
