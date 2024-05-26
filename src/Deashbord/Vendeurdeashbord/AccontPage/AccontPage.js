@@ -1,111 +1,174 @@
-import React, { useEffect, useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import Dropzone from 'react-dropzone';
-import './AccontPage.css';
-
-const AccountSchema = Yup.object().shape({
-  firstName: Yup.string().required('Required'),
-  lastName: Yup.string().required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
-  phone: Yup.string().required('Required'),
-  location: Yup.string(),
-  postalCode: Yup.string().required('Required'),
-});
+import React, { useEffect, useState } from "react";
+import "./AccontPage.css";
 
 const AccountPage = () => {
-  const [profileImage, setProfileImage] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    address: "",
+    dateOfBirth: "",
+    avatar: null,
+  });
 
-  const handleDrop = (acceptedFiles) => {
-    setProfileImage(acceptedFiles[0]);
+  useEffect(() => {
+    // Fetch user data from local storage
+    const storedUserData = localStorage.getItem("userr");
+
+    if (storedUserData) {
+      try {
+        const userData = JSON.parse(storedUserData);
+        setUserData(userData);
+        setFormData({
+          name: userData.name,
+          email: userData.email,
+          phoneNumber: userData.phoneNumber || "",
+          address: userData.address || "",
+          dateOfBirth: userData.dateOfBirth || "",
+          avatar: userData.avatar || null,
+        });
+      } catch (error) {
+        console.error("Error parsing user data from local storage:", error);
+      }
+    }
+  }, []);
+
+  const updateUserProfile = async (formData) => {
+    try {
+      const formDataToSend = new FormData();
+      for (const key in formData) {
+        formDataToSend.append(key, formData[key]);
+      }
+      const response = await fetch(
+        `/api/user/${userData._id}/updateUserProfile`,
+        {
+          method: "PUT",
+          body: formDataToSend,
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to update user profile");
+      }
+      const updatedUserData = await response.json();
+      return updatedUserData;
+    } catch (error) {
+      console.error("Error updating user profile:", error);
+      throw error;
+    }
   };
 
-  const handleSubmit = (values) => {
-    // Handle form submission
-    console.log(values);
-    console.log(profileImage);
+  const handleEdit = () => {
+    setEditMode(true);
   };
-  
+
+  const handleSave = async () => {
+    try {
+      const updatedUserData = await updateUserProfile(formData);
+      setUserData(updatedUserData);
+      // Update local storage with the updated user data
+      const updatedLocalStorageData = { ...userData, ...updatedUserData };
+      localStorage.setItem("userr", JSON.stringify(updatedLocalStorageData));
+      setUserData(updatedLocalStorageData);
+      // Update formData with the new userData
+      setFormData({
+        ...formData,
+        ...updatedUserData,
+      });
+      setEditMode(false);
+    } catch (error) {
+      console.error("Failed to save changes:", error);
+      // Handle error, show error message, etc.
+    }
+  };
+
+  const handleChange = (e) => {
+    if (e.target.name === "avatar") {
+      setFormData({
+        ...formData,
+        avatar: e.target.files[0],
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value,
+      });
+    }
+  };
 
   return (
     <div className="account-page">
       <h1>User Profile</h1>
-      <div className="profile-header">
-        <Dropzone onDrop={handleDrop}>
-          {({ getRootProps, getInputProps }) => (
-            <div {...getRootProps({ className: 'profile-image' })}>
-              <input {...getInputProps()} />
-              {profileImage ? (
-                <img
-                  src={URL.createObjectURL(profileImage)}
-                  alt="Profile"
-                  className="profile-picture"
-                />
-              ) : (
-                <div className="placeholder">+</div>
-              )}
-            </div>
-          )}
-        </Dropzone>
+      {userData && (
         <div className="profile-info">
-          <h2>Sara Tancredi</h2>
-          <p>New York, USA</p>
+          <div className="profile-image">
+            {userData.avatar && userData.avatar instanceof Blob ? (
+              <img
+                src={URL.createObjectURL(userData.avatar)}
+                alt="Profile"
+                className="profile-picture"
+              />
+            ) : (
+              <div className="placeholder">+</div>
+            )}
+            {editMode && (
+              <label htmlFor="avatar" className="custom-file-upload">
+                Upload Image
+              </label>
+            )}
+            <input
+              id="avatar"
+              className="input-file"
+              type="file"
+              name="avatar"
+              accept="image/*"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="profile-details">
+            <h2>{userData.name}</h2>
+            {editMode ? (
+              <div className="edit-fields">
+                <label htmlFor="phoneNumber">Phone Number:</label>
+                <input
+                  type="Number"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
+                  placeholder="Phone Number"
+                  onChange={handleChange}
+                />
+                <label htmlFor="address">Address:</label>
+                <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  placeholder="Address"
+                  onChange={handleChange}
+                />
+                <label htmlFor="dateOfBirth">Date of Birth:</label>
+                <input
+                  type="date"
+                  name="dateOfBirth"
+                  value={formData.dateOfBirth}
+                  placeholder="Date of Birth"
+                  onChange={handleChange}
+                />
+                <button onClick={handleSave}>Save</button>
+              </div>
+            ) : (
+              <>
+                <p>Email: {userData.email}</p>
+                <p>Phone Number: {userData.phoneNumber}</p>
+                <p>Address: {userData.address}</p>
+                <p>Date of Birth: {userData.dateOfBirth}</p>
+                <button onClick={handleEdit}>Edit</button>
+              </>
+            )}
+          </div>
         </div>
-      </div>
-      <Formik
-        initialValues={{
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          location: '',
-          postalCode: '',
-        }}
-        validationSchema={AccountSchema}
-        onSubmit={handleSubmit}
-      >
-        {() => (
-          <Form className="form">
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="firstName">First Name</label>
-                <Field name="firstName" type="text" placeholder="First Name" />
-                <ErrorMessage name="firstName" component="div" className="error-message" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="lastName">Last Name</label>
-                <Field name="lastName" type="text" placeholder="Last Name" />
-                <ErrorMessage name="lastName" component="div" className="error-message" />
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="email">Email Address</label>
-                <Field name="email" type="email" placeholder="Email Address" />
-                <ErrorMessage name="email" component="div" className="error-message" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="phone">Phone Number</label>
-                <Field name="phone" type="text" placeholder="Phone Number" />
-                <ErrorMessage name="phone" component="div" className="error-message" />
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="location">Location</label>
-                <Field name="location" type="text" placeholder="Location" />
-                <ErrorMessage name="location" component="div" className="error-message" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="postalCode">Postal Code</label>
-                <Field name="postalCode" type="text" placeholder="Postal Code" />
-                <ErrorMessage name="postalCode" component="div" className="error-message" />
-              </div>
-            </div>
-            <button type="submit" className="save-button">Save Changes</button>
-          </Form>
-        )}
-      </Formik>
+      )}
     </div>
   );
 };

@@ -1,155 +1,128 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f5f5f5;
-  }
-  
-  .account-page {
-    max-width: 700px;
-   
-    padding: 0 40px ;
-    background-color: #fff;
-   
-  }
-  
-  h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 30px;
-  }
-  
+  font-family: "Arial", sans-serif;
+  background-color: #f5f5f5;
+}
+
+.account-page {
+  max-width: 700px;
+  padding: 30px;
+  background-color: #fff;
+  margin: 50px auto; /* Added margin from top */
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #e1e1e1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid #007bff; /* Changed border color */
+  margin-right: 20px;
+}
+
+.profile-picture {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder {
+  font-size: 50px;
+  color: #bbb;
+}
+
+.profile-details {
+  flex: 1;
+}
+
+.profile-details h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.profile-details p {
+  margin: 5px 0;
+  color: #888;
+}
+
+.edit-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-fields input {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.edit-fields button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.edit-fields button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
   .profile-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
     flex-direction: column;
+    align-items: center;
   }
-  
+
   .profile-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: #e1e1e1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    color: #fff;
-    cursor: pointer;
-    margin-right: 0;
-    overflow: hidden;
-    position: relative;
-    border: 2px solid #ff6f61;
-    margin-bottom: 20px;
-  }
-  
-  .profile-picture {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .placeholder {
-    font-size: 50px;
-    color: #bbb;
-  }
-  
-  .profile-info h2 {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
-  }
-  
-  .profile-info p {
-    margin: 5px 0 0;
-    color: #888;
-  }
-  
-  .form {
-    width: 100%;
-  }
-  
-  .form-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    flex: 1;
     margin-right: 0;
     margin-bottom: 20px;
   }
-  
-  .form-group:last-child {
-    margin-right: 0;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 14px;
-  }
-  
-  .form-group input::placeholder {
-    color: #aaa;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-  }
-  
-  .save-button {
-    background-color: #ff6f61;
-    color: #fff;
-    border: none;
-    padding: 15px 30px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    display: block;
-    margin: 20px auto 0;
-    transition: background-color 0.3s ease;
-  }
-  
-  .save-button:hover {
-    background-color: #ff543d;
-  }
-  
-  /* Media Queries for Responsiveness */
-  @media (min-width: 600px) {
-    .profile-header {
-      flex-direction: row;
-    }
-  
-    .profile-image {
-      margin-right: 20px;
-      margin-bottom: 0;
-    }
-  
-    .form-row {
-      flex-direction: row;
-    }
-  
-    .form-group {
-      margin-right: 10px;
-      margin-bottom: 0;
-    }
-  
-    .form-group:last-child {
-      margin-right: 0;
-    }
-  }
-  
+}
+/* CSS for the custom file upload button */
+.custom-file-upload {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 100px 100px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.custom-file-upload:hover {
+  background-color: #0056b3;
+}
+
+/* Hide default file input */
+.input-file {
+  display: none;
+}

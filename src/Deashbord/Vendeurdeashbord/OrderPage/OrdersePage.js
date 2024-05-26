@@ -4,11 +4,13 @@ import "./OrdersePage.css"; // Import the CSS file
 
 const OrdersPage = () => {
   const [products, setProducts] = useState([]);
+  const user = JSON.parse(localStorage.getItem("userr"));
+  const sellerId = user._id;
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("/api/products");
+        const response = await axios.get(`/api/products/seller/${sellerId}`);
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching data", error);
@@ -16,17 +18,32 @@ const OrdersPage = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [sellerId]); // Include sellerId in the dependency array
 
-  const handleDelete = (productId) => {
-    setProducts(products.filter((product) => product.id !== productId));
+  const handleDelete = async (productId) => {
+    try {
+      await axios.put(`/api/products/delete/${productId}`);
+      // Update the UI to remove the deleted product
+      setProducts(products.filter((product) => product._id !== productId));
+    } catch (error) {
+      console.error("Error deleting product", error);
+    }
   };
 
-  const handleAccept = (productId) => {
-    const updatedProducts = products.map((product) =>
-      product.id === productId ? { ...product, status: "accepted" } : product
-    );
-    setProducts(updatedProducts);
+  const handleAccept = async (productId) => {
+    try {
+      await axios.put(`/api/products/accept/${productId}`);
+      // Update the UI to reflect the accepted product
+      setProducts(
+        products.map((product) =>
+          product._id === productId
+            ? { ...product, status: "accepted" }
+            : product
+        )
+      );
+    } catch (error) {
+      console.error("Error accepting product", error);
+    }
   };
 
   return (
@@ -35,7 +52,6 @@ const OrdersPage = () => {
       <table>
         <thead>
           <tr>
-            <th>Order ID</th>
             <th>Product</th>
             <th>Quantity</th>
             <th>Status</th>
@@ -44,8 +60,7 @@ const OrdersPage = () => {
         </thead>
         <tbody>
           {products.map((product) => (
-            <tr key={product.id}>
-              <td>{product.id}</td>
+            <tr key={product._id}>
               <td>{product.name}</td>
               <td>{product.quantity}</td>
               <td>{product.status}</td>
@@ -54,13 +69,13 @@ const OrdersPage = () => {
                   <>
                     <button
                       className="accept-btn"
-                      onClick={() => handleAccept(product.id)}
+                      onClick={() => handleAccept(product._id)}
                     >
                       Accept
                     </button>
                     <button
                       className="delete-btn"
-                      onClick={() => handleDelete(product.id)}
+                      onClick={() => handleDelete(product._id)}
                     >
                       Delete
                     </button>
