@@ -1,7 +1,68 @@
 import React from "react";
-import { FaLaptop, FaMobileAlt, FaHeadphones, FaDesktop, FaTh } from "react-icons/fa";
+import { FaTh } from "react-icons/fa";
 import "./Category.css";
-import Input from "../../../../commponent/secondpart/Input";
+
+const wilayat = [
+  "Adrar",
+  "Chlef",
+  "Laghouat",
+  "Oum El Bouaghi",
+  "Batna",
+  "Béjaïa",
+  "Biskra",
+  "Béchar",
+  "Blida",
+  "Bouira",
+  "Tamanrasset",
+  "Tébessa",
+  "Tlemcen",
+  "Tiaret",
+  "Tizi Ouzou",
+  "Algiers",
+  "Djelfa",
+  "Jijel",
+  "Sétif",
+  "Saïda",
+  "Skikda",
+  "Sidi Bel Abbès",
+  "Annaba",
+  "Guelma",
+  "Constantine",
+  "Médéa",
+  "Mostaganem",
+  "M'Sila",
+  "Mascara",
+  "Ouargla",
+  "Oran",
+  "El Bayadh",
+  "Illizi",
+  "Bordj Bou Arréridj",
+  "Boumerdès",
+  "El Tarf",
+  "Tindouf",
+  "Tissemsilt",
+  "El Oued",
+  "Khenchela",
+  "Souk Ahras",
+  "Tipaza",
+  "Mila",
+  "Aïn Defla",
+  "Naâma",
+  "Aïn Témouchent",
+  "Ghardaïa",
+  "Relizane",
+  "Timimoun",
+  "Bordj Badji Mokhtar",
+  "Ouled Djellal",
+  "Béni Abbès",
+  "In Salah",
+  "In Guezzam",
+  "Touggourt",
+  "Djanet",
+  "El M'Ghair",
+  "El Menia"
+];
+
 
 function Category({ handleChange }) {
   return (
@@ -9,39 +70,17 @@ function Category({ handleChange }) {
       <h2 className="sidebar-title">Category</h2>
       <div>
         <label className="sidebar-label-container">
-          <input onChange={handleChange} type="radio" value="" name="test" />
-          <span className="checkmark"></span>
-          <span className="category-text">All</span>
+         
           <FaTh className="category-icon" />
         </label>
-        <Input
-          handleChange={handleChange}
-          value="Screen"
-          title="Screen"
-          name="test"
-          icon={<FaDesktop className="category-icon" />}
-        />
-        <Input
-          handleChange={handleChange}
-          value="Phone"
-          title="Phone"
-          name="test"
-          icon={<FaMobileAlt className="category-icon" />}
-        />
-        <Input
-          handleChange={handleChange}
-          value="Accessories"
-          title="Accessories"
-          name="test"
-          icon={<FaHeadphones className="category-icon" />}
-        />
-        <Input
-          handleChange={handleChange}
-          value="Computer"
-          title="Computer"
-          name="test"
-          icon={<FaLaptop className="category-icon" />}
-        />
+        <select onChange={handleChange} name="wilayat" className="wilayat-select">
+          <option value="">All</option>
+          {wilayat.map((wilaya, index) => (
+            <option key={index} value={wilaya}>
+              {wilaya}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );

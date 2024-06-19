@@ -31,7 +31,7 @@ const AddProduct = () => {
     formData.append("image", image);
     formData.append("category", category);
     formData.append("company", company);
-    formData.append("quantity", parseInt(quantity)); // Append quantity to formData
+    // formData.append("quantity", parseInt(quantity)); // Append quantity to formData
     formData.append("sellerId", userId);
 
     try {
@@ -152,16 +152,60 @@ const AddProduct = () => {
               onChange={(e) => setCategory(e.target.value)}
               required
             >
-              <option value="">Select a category</option>
-              <option value="Screen">Screen</option>
-              <option value="Phone">Phone</option>
-              <option value="Accessories">Accessories</option>
-              <option value="Computer">Computer</option>
+               <option value="">Select a wilaya</option>
+    <option value="Adrar">Adrar</option>
+    <option value="Chlef">Chlef</option>
+    <option value="Laghouat">Laghouat</option>
+    <option value="Oum El Bouaghi">Oum El Bouaghi</option>
+    <option value="Batna">Batna</option>
+    <option value="Béjaïa">Béjaïa</option>
+    <option value="Biskra">Biskra</option>
+    <option value="Béchar">Béchar</option>
+    <option value="Blida">Blida</option>
+    <option value="Bouira">Bouira</option>
+    <option value="Tamanrasset">Tamanrasset</option>
+    <option value="Tébessa">Tébessa</option>
+    <option value="Tlemcen">Tlemcen</option>
+    <option value="Tiaret">Tiaret</option>
+    <option value="Tizi Ouzou">Tizi Ouzou</option>
+    <option value="Algiers">Algiers</option>
+    <option value="Djelfa">Djelfa</option>
+    <option value="Jijel">Jijel</option>
+    <option value="Sétif">Sétif</option>
+    <option value="Saïda">Saïda</option>
+    <option value="Skikda">Skikda</option>
+    <option value="Sidi Bel Abbès">Sidi Bel Abbès</option>
+    <option value="Annaba">Annaba</option>
+    <option value="Guelma">Guelma</option>
+    <option value="Constantine">Constantine</option>
+    <option value="Médéa">Médéa</option>
+    <option value="Mostaganem">Mostaganem</option>
+    <option value="M'Sila">M'Sila</option>
+    <option value="Mascara">Mascara</option>
+    <option value="Ouargla">Ouargla</option>
+    <option value="Oran">Oran</option>
+    <option value="El Bayadh">El Bayadh</option>
+    <option value="Illizi">Illizi</option>
+    <option value="Bordj Bou Arréridj">Bordj Bou Arréridj</option>
+    <option value="Boumerdès">Boumerdès</option>
+    <option value="El Tarf">El Tarf</option>
+    <option value="Tindouf">Tindouf</option>
+    <option value="Tissemsilt">Tissemsilt</option>
+    <option value="El Oued">El Oued</option>
+    <option value="Khenchela">Khenchela</option>
+    <option value="Souk Ahras">Souk Ahras</option>
+    <option value="Tipaza">Tipaza</option>
+    <option value="Mila">Mila</option>
+    <option value="Aïn Defla">Aïn Defla</option>
+    <option value="Naâma">Naâma</option>
+    <option value="Aïn Témouchent">Aïn Témouchent</option>
+    <option value="Ghardaïa">Ghardaïa</option>
+    <option value="Relizane">Relizane</option>
             </select>
           </div>
 
           <div className="form-group">
-            <label htmlFor="company">Company</label>
+            <label htmlFor="company">catigory</label>
             <select
               id="company"
               value={company}
@@ -169,17 +213,17 @@ const AddProduct = () => {
               required
             >
               <option value="">Select a company</option>
-              <option value="Hp">HP</option>
-              <option value="Dell">Dell</option>
-              <option value="Samsung">Samsung</option>
-              <option value="Iphone">IPhone</option>
-              <option value="Xiaomi">Xiaomi</option>
+              <option value="Team">Team</option>
+              <option value="Individual">Individual </option>
+              <option value="Combat">Combat </option>
+              <option value="Recreational">Recreational </option>
+              <option value="Bodybuilding">Bodybuilding</option>
             </select>
           </div>
 
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="quantity">Quantity</label>{" "}
-            {/* New quantity field */}
+            
             <input
               type="number"
               id="quantity"
@@ -187,7 +231,7 @@ const AddProduct = () => {
               onChange={(e) => setQuantity(e.target.value)}
               required
             />
-          </div>
+          </div> */}
 
           <div className="addproduct-button">
             <button type="submit" className="submit-button">

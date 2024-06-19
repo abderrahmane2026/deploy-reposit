@@ -1,4 +1,4 @@
-.Hero-section {
+.news-section {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -8,19 +8,19 @@
     background-color: #f0f8ff;
 }
 
-.hero-img {
+.news-img {
     padding-top: 50px;
     display: flex;
     justify-content: center;
     width: 50%;
 }
 
-.hero-img img {
+.news-img img {
     width: 80%;
     max-width: 100%;
 }
 
-.hero-dicription {
+.news-description {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,16 +28,18 @@
     width: 50%;
 }
 
-.hero-dicription h1 {
+.news-description h1 {
     text-transform: uppercase;
     font-size: 50px;
     font-weight: 700;
     margin-bottom: 30px;
 }
-.hero-dicription h1 span{
+
+.news-description h1 span {
     color: blue;
 }
-.hero-dicription p {
+
+.news-description p {
     font-size: 20px;
     font-weight: 400;
     margin-bottom: 40px;
@@ -45,33 +47,33 @@
     line-height: 1.5;
 }
 
-.hero-dicription button{
+.news-description button {
     color: white;
     font-weight: 500;
     background-color: blue;
     box-shadow: 0 0 5px 0 #0005;
-    padding: 10px 20px ;
+    padding: 10px 20px;
     border-radius: 10px;
     border: 0ch;
     margin-top: 40px;
-    border: 2px solid blue ;
+    border: 2px solid blue;
     transition: 0.4s;
 }
 
-.hero-dicription button:hover{
-    border: 2px solid blue ;
+.news-description button:hover {
+    border: 2px solid blue;
     background-color: white;
     color: black;
-
 }
-.hero-dicription a {
+
+.news-description a {
     text-decoration: none;
     color: black;
 }
 
 /* Responsive Styles */
 @media (max-width: 1200px) {
-    .Hero-section {
+    .news-section {
         flex-direction: column;
         align-items: center;
         text-align: center;
@@ -79,68 +81,68 @@
         padding: 20px;
     }
 
-    .hero-img {
+    .news-img {
         width: 80%;
     }
 
-    .hero-dicription {
+    .news-description {
         padding-left: 0;
         width: 100%;
     }
 
-    .hero-dicription h1 {
+    .news-description h1 {
         font-size: 40px;
     }
 
-    .hero-dicription p {
+    .news-description p {
         font-size: 18px;
     }
 
-    .hero-dicription button {
+    .news-description button {
         width: 140px;
         font-size: 16px;
     }
 }
 
 @media (max-width: 768px) {
-    .Hero-section {
+    .news-section {
         margin: 10px;
         padding: 10px;
     }
 
-    .hero-img {
+    .news-img {
         padding-top: 20px;
     }
 
-    .hero-dicription h1 {
+    .news-description h1 {
         font-size: 30px;
     }
 
-    .hero-dicription p {
+    .news-description p {
         font-size: 16px;
     }
 
-    .hero-dicription button {
+    .news-description button {
         width: 120px;
         font-size: 14px;
     }
 }
 
 @media (max-width: 480px) {
-    .Hero-section {
+    .news-section {
         margin: 5px;
         padding: 5px;
     }
 
-    .hero-dicription h1 {
+    .news-description h1 {
         font-size: 24px;
     }
 
-    .hero-dicription p {
+    .news-description p {
         font-size: 14px;
     }
 
-    .hero-dicription button {
+    .news-description button {
         width: 100px;
         font-size: 12px;
     }

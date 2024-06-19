@@ -30,6 +30,13 @@ import Users from './Deashbord/Admindeashbord/UsersPage/Users';
 import AddProduct from './Deashbord/Vendeurdeashbord/AddProduct/AddProduct';
 import RequireAuth from './Pages/Auth/RequireAuth';
 import { userContext } from './Context/UserContext';
+import NewsPage from './Pages/News/NewsPage';
+import PaidPage from './Pages/Paidpage/Paid';
+import Matches from './Pages/News/Match';
+import Competitions from './Pages/News/Competitions';
+import Events from './Pages/News/Events';
+import Athletes from './Pages/News/Athletes';
+import Coaches from './Pages/News/Coaches';
 
 function App() {
   const {user} = userContext()
@@ -48,12 +55,26 @@ function App() {
        
          <Route path='/Favorit' element={<FavoritPage/>}/>
         <Route path='/Favorit' element={<Userdeashbord/>}/>
+
+        {/* news page */}
+        <Route path='/News' element={<NewsPage/>}>
+          
+          <Route path="matches" element={<Matches/>} />
+          <Route path="competitions" element={<Competitions />} />
+          <Route path="events" element={<Events />} />
+          <Route path="athletes" element={<Athletes />} />
+          <Route path="coaches" element={<Coaches />} />
+        
+        </Route>
        
         <Route path='/About' element={<About/>}/>
         <Route path='/Contact' element={<Contact/>}/>
         {/* <Route path='/Login' element={<LoginPage/>}/> */}
         <Route path='/Login' element={<NewLoginPage/>}/>
         <Route path='/singup' element={<NewSignPage/>}/>
+        <Route path='/paid' element={<PaidPage/>}/>
+
+
 
        
         <Route path='/ShoppingCart' element={<ShoppingCart/>}/>

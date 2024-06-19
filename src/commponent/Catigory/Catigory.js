@@ -1,11 +1,11 @@
 import React from 'react'
 import "./Catigory.css"
 import { Link } from 'react-router-dom'
-import laptop from "../../assetes/picturs/catigory/laptop.png"
-import headphone from "../../assetes/picturs/catigory/headphone.png"
-import iphone from "../../assetes/picturs/catigory/iphone.png"
-import Tv from "../../assetes/picturs/catigory/Tv.png"
-import screen from "../../assetes/picturs/catigory/screen.png"
+import laptop from "../../assetes/picturs/catigory/Soccer-rafiki.png"
+import headphone from "../../assetes/picturs/catigory/Breathing exercise-bro.png"
+
+import Tv from "../../assetes/picturs/catigory/Boxing-bro.png"
+import screen from "../../assetes/picturs/catigory/Gym-rafiki.png"
 
 export default function 
 () {
@@ -19,14 +19,14 @@ export default function
 
         
         <div className='hero-dicription'>
-            <h1>Computer</h1>
+            <h1>Football</h1>
 
             <p>Cards stack on top of each other after some interval.
                  Perfect for showing testimonials.
                 Perfect for showing testimonials
                 </p>
 
-                <Link to="/shop"> <button>Shop New</button></Link>
+                <Link to="/shop"> <button>Register New</button></Link>
              
      </div>
 
@@ -41,14 +41,14 @@ export default function
 
         
         <div className='hero-dicription'>
-            <h1>Tv screen</h1>
+            <h1>Fight Clubs</h1>
 
             <p>Cards stack on top of each other after some interval.
                  Perfect for showing testimonials.
                 Perfect for showing testimonials
                 </p>
 
-                <Link to="/shop"> <button>Shop New</button></Link>
+                <Link to="/shop"> <button>Register New</button></Link>
              
      </div>
 
@@ -69,14 +69,14 @@ export default function
 
         
         <div className='hero-dicription'>
-            <h1>Accessories</h1>
+            <h1>Meditation Clubs</h1>
 
             <p>Cards stack on top of each other after some interval.
                  Perfect for showing testimonials.
                 Perfect for showing testimonials
                 </p>
 
-                <Link to="/shop"> <button>Shop New</button></Link>
+                <Link to="/shop"> <button>Register New</button></Link>
              
      </div>
 
@@ -92,14 +92,14 @@ export default function
 
         
         <div className='hero-dicription'>
-            <h1> phone </h1>
+            <h1> Bodybuilding Clubs </h1>
 
             <p>Cards stack on top of each other after some interval.
                  Perfect for showing testimonials.
                 Perfect for showing testimonials
                 </p>
 
-                <Link to="/shop"> <button>Shop New</button></Link>
+                <Link to="/shop"> <button>Register New</button></Link>
              
      </div>
 

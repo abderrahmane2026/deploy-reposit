@@ -6,12 +6,12 @@ const Recommended = ({ handleClick }) => {
     <div className="recommended-container">
       <div className="recommended-title">Recommended</div>
       <div className="recommended-flex">
-        <Button onClickHandler={handleClick} value="" title="All Products" />
-        <Button onClickHandler={handleClick} value="Hp" title="Hp" />
-        <Button onClickHandler={handleClick} value="Dell" title="Dell" />
-        <Button onClickHandler={handleClick} value="Samsung" title="Samsung" />
-        <Button onClickHandler={handleClick} value="Iphone" title="Iphone" />
-        <Button onClickHandler={handleClick} value="Xiaomi" title="Xiaomi" />
+        <Button onClickHandler={handleClick} value="" title="All Clubs" />
+        <Button onClickHandler={handleClick} value="Team" title="Team" />
+        <Button onClickHandler={handleClick} value="Individual" title="Individual" />
+        <Button onClickHandler={handleClick} value="Combat" title="Combat" />
+        <Button onClickHandler={handleClick} value="Recreational" title="Recreational" />
+        <Button onClickHandler={handleClick} value="Bodybuilding" title="Bodybuilding" />
       </div>
     </div>
   );

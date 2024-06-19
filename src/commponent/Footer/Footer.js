@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
-import logo from '../../assetes/logo/logo.png';
+import logo from '../../assetes/logo/startup-logo.png';
 import './Footer.css';
 
 

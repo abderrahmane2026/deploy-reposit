@@ -1,0 +1,73 @@
+/* General Styles */
+
+  
+  /* Container Styles */
+  .PaidPage .container {
+   max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    
+    text-align: center;
+  }
+  
+  /* Header Styles */
+  .PaidPage h1{
+    font-weight: 700;
+    word-spacing: 1px;
+    font-size: 60px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+  .PaidPage  h1 span{
+    color: #007bff;
+}
+
+  /* Form Group Styles */
+  .PaidPage .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  /* Label Styles */
+  .PaidPage label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  /* Input Styles */
+  .PaidPage input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  /* Button Styles */
+  .PaidPage button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .PaidPage button:hover {
+    background-color: #007bff;
+  }
+  
+  /* Additional Styles */
+  .PaidPage .form-group input:focus {
+    border-color: #80bdff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  

@@ -24,6 +24,10 @@ export default function Breadcrum({ product }) {
       </div>
       <FaChevronRight className='breadcrumb-arrow' />
       <div className='breadcrumb-item'>
+        <span>{product.company}</span>
+      </div>
+      <FaChevronRight className='breadcrumb-arrow' />
+      <div className='breadcrumb-item'>
         <span>{product.name}</span>
       </div>
     </div>

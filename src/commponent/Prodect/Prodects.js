@@ -7,9 +7,9 @@ import Newprod from './Newprod/Newprod'
 export default function Prodect() {
   return (
     <div className='prodect-container'>
-      <Newprod/>
+      {/* <Newprod/> */}
       <Populer/>
-      <Offers/>
+      {/* <Offers/> */}
 
     </div>
   )

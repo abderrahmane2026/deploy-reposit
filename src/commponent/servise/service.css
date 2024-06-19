@@ -1,0 +1,103 @@
+.service-section2{
+    padding: 50px;
+    background-color: #f9f9f9;
+}
+
+.service-section-titel h1{
+    font-weight: 700;
+    word-spacing: 1px;
+    font-size: 60px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.service-section-titel h1 span{
+    color: blue;
+}
+
+.service-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.service-card{
+    width: 250px;
+    height: auto;
+    padding: 20px;
+    margin: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    transition: 0.4s ease all;
+}
+
+.service-card:hover{
+    transform: scale(1.1);
+}
+
+.service-card h3{
+    font-weight: 600;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.808);
+    margin: 10px;
+}
+
+.service-card button{
+    width: 150px;
+    color: white;
+    background-color: blue;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.192);
+    border: 1px solid blue;
+    border-radius: 25px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 20px;
+    transition: 0.4s;
+}
+
+.service-card button:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid blue;
+}
+
+.service-card .service-icon{
+    font-size: 35px;
+    margin: 10px;
+    color: blue;
+}
+
+.service-card p{
+    color: rgba(0, 0, 0, 0.7);
+    margin-top: 20px;
+}
+
+.service-card button span{
+    font-weight: 500;
+    font-size: 15px;
+    position: relative;
+    margin-bottom: 3px;
+    margin-right: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .service-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service-card {
+        width: 100%;
+        max-width: 400px;
+    }
+}

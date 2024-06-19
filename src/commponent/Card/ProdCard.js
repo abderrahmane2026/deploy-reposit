@@ -1,6 +1,6 @@
 import { FaRegStar, FaShoppingCart, FaStar } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import screen from "../../assetes/picturs/catigory/screen.png"
+
 import './card.css';
 
 function ProdCard(props) {

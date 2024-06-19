@@ -1,6 +1,7 @@
 import React from 'react'
 import ProdCard from '../../Card/ProdCard'
 import "./Populer.css"
+import ProdCardtest from '../../testcart/ProdCardtest'
 
 export default function Populer() {
   return (
@@ -10,11 +11,13 @@ export default function Populer() {
         <hr/>
       </h1>
       <div className='prod-continer'>
-         <ProdCard/>
-         <ProdCard/>
-         <ProdCard/>
-         <ProdCard/> 
-         <ProdCard/>
+         <ProdCardtest/>
+         <ProdCardtest/>
+         <ProdCardtest/>
+         <ProdCardtest/>
+         <ProdCardtest/>
+         <ProdCardtest/>
+
       
         
       </div>

@@ -13,25 +13,25 @@ export default function Service() {
        <div className='service-1'>
        
         <img src={serv1}/>
-        <h3>service one</h3>
+        <h3>SEARCHABILITY</h3>
        </div>
 
        <div className='service-1'>
        
        <img src={serv2}/>
-       <h3>service one</h3>
+       <h3>SUPPORT TEAM</h3>
        </div>
        
        <div className='service-1'>
        
         <img src={serv3}/>
-        <h3>service one</h3>
+        <h3>GUARANTEE</h3>
        </div>
 
        <div className='service-1'>
         
        <img src={serv4}/>
-       <h3>service one</h3>
+       <h3>INTERNATIONALE</h3>
        </div>
     </div>
   )

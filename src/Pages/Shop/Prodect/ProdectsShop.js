@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Prodects.css"
 import ProdCard from '../../../commponent/Card/ProdCard'
-import all_product from '../../../assetes/all_product'
+
 
 export default function Prodects({ result }) {
   return (
