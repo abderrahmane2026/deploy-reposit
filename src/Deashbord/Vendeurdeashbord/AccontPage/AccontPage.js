@@ -42,7 +42,7 @@ const AccountPage = () => {
         formDataToSend.append(key, formData[key]);
       }
       const response = await fetch(
-        `/api/user/${userData._id}/updateUserProfile`,
+        `https://futterclubs-1.onrender.com/api/user/${userData._id}/updateUserProfile`,
         {
           method: "PUT",
           body: formDataToSend,

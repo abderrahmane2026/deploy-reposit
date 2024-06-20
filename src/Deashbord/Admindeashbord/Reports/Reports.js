@@ -9,7 +9,7 @@ export default function Reports() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get("/api/contact/");
+        const response = await axios.get("https://futterclubs-1.onrender.com/api/contact/");
         setMessages(response.data);
         setLoading(false);
       } catch (error) {

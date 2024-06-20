@@ -16,7 +16,7 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("/api/contact/submit", {
+      const res = await axios.post("https://futterclubs-1.onrender.com/api/contact/submit", {
         email,
         subject,
         message,

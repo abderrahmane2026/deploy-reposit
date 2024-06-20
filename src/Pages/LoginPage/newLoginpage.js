@@ -35,7 +35,7 @@ export default function NewLoginPage() {
     setLoading(true);
 
     try {
-      const { data } = await axios.post("/api/user/login", values);
+      const { data } = await axios.post("https://futterclubs-1.onrender.com/api/user/login", values);
       setLoading(false);
       window.localStorage.setItem("userr", JSON.stringify(data.user));
       navigate("/");

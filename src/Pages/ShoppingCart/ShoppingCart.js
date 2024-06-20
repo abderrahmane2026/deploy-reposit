@@ -28,19 +28,19 @@ export default function ShoppingCart() {
     };
 
     try {
-      const response = await axios.post("/api/order/submit", formData);
+      const response = await axios.post("https://futterclubs-1.onrender.com/api/order/submit", formData);
       console.log(response.data);
       alert("Your order is submitted");
 
       // Clear the cart
       const clientId = "some-client-id"; // Replace with actual client ID logic
-      await axios.post(`/api/cart/${clientId}/clear`);
+      await axios.post(`https://futterclubs-1.onrender.com/api/cart/${clientId}/clear`);
 
       // Update the product quantities
       all_product.forEach(async (product) => {
         if (cartItems[product._id]) {
           try {
-            await axios.put(`/api/products/${product._id}`, {
+            await axios.put(`https://futterclubs-1.onrender.com/api/products/${product._id}`, {
               quantity: product.quantity - cartItems[product._id],
             });
             console.log(`Updated product ${product._id} quantity`);

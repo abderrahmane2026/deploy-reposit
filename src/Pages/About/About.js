@@ -9,7 +9,7 @@ const About = () => {
 
   const team = [
     {
-        avatar: "https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg",
+        avatar: "https:/https://futterclubs-1.onrender.com/api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg",
         name: "Abderrahmane",
         title: "Full stack engineer",
         desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",
@@ -25,7 +25,7 @@ const About = () => {
         twitter: "javascript:void(0)",
     },
     {
-        avatar: "https://randomuser.me/api/portraits/women/79.jpg",
+        avatar: "https://randomuser.mehttps://futterclubs-1.onrender.com/api/portraits/women/79.jpg",
         name: "Ferial",
         title: "Services",
         desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry.",

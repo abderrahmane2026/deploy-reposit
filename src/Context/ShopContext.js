@@ -10,7 +10,7 @@ function ShopContextProvider(props) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("/api/products");
+        const response = await axios.get("https://futterclubs-1.onrender.com/api/products");
         setAllProduct(response.data);
       } catch (error) {
         console.error("Error fetching data", error);
@@ -20,7 +20,7 @@ function ShopContextProvider(props) {
     const fetchCart = async () => {
       try {
         const clientId = "some-client-id"; // Replace with actual client ID logic
-        const response = await axios.get(`/api/cart/${clientId}`);
+        const response = await axios.get(`https://futterclubs-1.onrender.com/api/cart/${clientId}`);
         setCartItems(response.data.products);
       } catch (error) {
         console.error("Error fetching cart", error);
@@ -35,7 +35,7 @@ function ShopContextProvider(props) {
     try {
       const clientId = "some-client-id"; // Replace with actual client ID logic
       const response = await axios.post(
-        `/api/cart/${clientId}/add/${productId}`
+        `https://futterclubs-1.onrender.com/api/cart/${clientId}/add/${productId}`
       );
       setCartItems(response.data.products);
     } catch (error) {
@@ -47,7 +47,7 @@ function ShopContextProvider(props) {
     try {
       const clientId = "some-client-id"; // Replace with actual client ID logic
       const response = await axios.post(
-        `/api/cart/${clientId}/remove/${productId}`
+        `https://futterclubs-1.onrender.com/api/cart/${clientId}/remove/${productId}`
       );
       setCartItems(response.data.products);
     } catch (error) {
@@ -57,7 +57,7 @@ function ShopContextProvider(props) {
 
   const clearCart = async () => {
     const clientId = "some-client-id"; // Replace with actual client ID logic
-    await axios.post(`/api/cart/${clientId}/clear`);
+    await axios.post(`https://futterclubs-1.onrender.com/api/cart/${clientId}/clear`);
     setCartItems([]); // Clear the local cart state
   };
 

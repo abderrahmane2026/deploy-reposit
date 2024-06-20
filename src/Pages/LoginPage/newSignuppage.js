@@ -31,7 +31,7 @@ export default function NewSignPage() {
     setLoading(true);
 
     try {
-      await axios.post("/api/user/signup", values);
+      await axios.post("https://futterclubs-1.onrender.com/api/user/signup", values);
       setLoading(false);
       navigate("/Login", { replace: true });
     } catch (err) {

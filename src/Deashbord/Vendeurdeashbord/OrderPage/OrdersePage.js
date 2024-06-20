@@ -10,7 +10,7 @@ const OrdersPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`/api/products/seller/${sellerId}`);
+        const response = await axios.get(`https://futterclubs-1.onrender.com/api/products/seller/${sellerId}`);
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching data", error);
@@ -22,7 +22,7 @@ const OrdersPage = () => {
 
   const handleDelete = async (productId) => {
     try {
-      await axios.put(`/api/products/delete/${productId}`);
+      await axios.put(`https://futterclubs-1.onrender.com/api/products/delete/${productId}`);
       // Update the UI to remove the deleted product
       setProducts(products.filter((product) => product._id !== productId));
     } catch (error) {
@@ -32,7 +32,7 @@ const OrdersPage = () => {
 
   const handleAccept = async (productId) => {
     try {
-      await axios.put(`/api/products/accept/${productId}`);
+      await axios.put(`https://futterclubs-1.onrender.com/api/products/accept/${productId}`);
       // Update the UI to reflect the accepted product
       setProducts(
         products.map((product) =>

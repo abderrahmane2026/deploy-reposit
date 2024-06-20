@@ -21,7 +21,7 @@ function ProdectDetail() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`/api/products/${prodectId}`);
+        const response = await axios.get(`https://futterclubs-1.onrender.com/api/products/${prodectId}`);
         setProduct(response.data);
       } catch (error) {
         console.log("Error fetching data", error);
@@ -34,7 +34,7 @@ function ProdectDetail() {
   useEffect(() => {
     const fetchRelatedProducts = async (productName) => {
       try {
-        const response = await axios.get("/api/products");
+        const response = await axios.get("https://futterclubs-1.onrender.com/api/products");
         let allProducts = response.data;
 
         const related = allProducts

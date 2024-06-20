@@ -11,7 +11,7 @@ export default function ProductList() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`/api/products/seller/${sellerId}`);
+        const response = await fetch(`https://futterclubs-1.onrender.com/api/products/seller/${sellerId}`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }

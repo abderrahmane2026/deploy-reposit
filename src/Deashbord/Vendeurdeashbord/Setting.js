@@ -14,7 +14,7 @@ export default function Settings() {
     e.preventDefault();
 
     try {
-      const response = await fetch(`/api/user/${userId}/updateProfile`, {
+      const response = await fetch(`https://futterclubs-1.onrender.com/api/user/${userId}/updateProfile`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +36,7 @@ export default function Settings() {
   const handleChangePassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/api/user/${userId}/updatePassword`, {
+      const response = await fetch(`https://futterclubs-1.onrender.com/api/user/${userId}/updatePassword`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

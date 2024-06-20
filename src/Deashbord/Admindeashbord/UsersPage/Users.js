@@ -9,7 +9,7 @@ const Users = () => {
 
   useEffect(() => {
     axios
-      .get("/api/user")
+      .get("https://futterclubs-1.onrender.com/api/user")
       .then((response) => {
         setUsers(response.data);
         setLoading(false);
@@ -27,7 +27,7 @@ const Users = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`/api/user/${userId}`);
+      await axios.delete(`https://futterclubs-1.onrender.com/api/user/${userId}`);
       // Filter out the deleted user from the state
       setUsers(users.filter((user) => user._id !== userId));
       alert("User deleted successfully!");

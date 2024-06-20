@@ -9,7 +9,7 @@ const Sellers = () => {
 
   useEffect(() => {
     axios
-      .get("/api/user")
+      .get("https://futterclubs-1.onrender.com/api/user")
       .then((response) => {
         const sellers = response.data.filter((user) => user.role === "seller");
         setSellers(sellers);
@@ -24,7 +24,7 @@ const Sellers = () => {
   const handleAccept = async (userId) => {
     if (window.confirm("Are you sure you want to accept this seller?")) {
       try {
-        await axios.put(`/api/user/${userId}/accept`);
+        await axios.put(`https://futterclubs-1.onrender.com/api/user/${userId}/accept`);
         setSellers(
           sellers.map((seller) =>
             seller._id === userId
@@ -41,7 +41,7 @@ const Sellers = () => {
   const handleRefuse = async (userId) => {
     if (window.confirm("Are you sure you want to refuse this seller?")) {
       try {
-        await axios.put(`/api/user/${userId}/refuse`);
+        await axios.put(`https://futterclubs-1.onrender.com/api/user/${userId}/refuse`);
         setSellers(
           sellers.map((seller) =>
             seller._id === userId

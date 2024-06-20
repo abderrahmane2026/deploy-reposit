@@ -15,7 +15,7 @@ export default function Shop() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("/api/products");
+        const response = await axios.get("https://futterclubs-1.onrender.com/api/products");
         setall_product(response.data);
       } catch (error) {
         console.error("error fetching data", error);

@@ -35,7 +35,7 @@ const AddProduct = () => {
     formData.append("sellerId", userId);
 
     try {
-      const response = await fetch("/api/products", {
+      const response = await fetch("https://futterclubs-1.onrender.com/api/products", {
         method: "POST",
         body: formData,
       });
