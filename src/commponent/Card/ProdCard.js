@@ -1,6 +1,6 @@
 import { FaRegStar, FaShoppingCart, FaStar } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-
+import pic from "../../assetes/picturs/Business mission-pana.png"
 import './card.css';
 
 function ProdCard(props) {
@@ -8,11 +8,15 @@ function ProdCard(props) {
     <div className="card-container">
       
       <div className='image'>
-      <Link to={`/product/${props.id}`}> <img src={props.image} alt=''/> </Link>
+      <Link to={`/product/${props.id}`}> 
+      {
+        console.log("abdo")
+      }
+      <img src={props.image} alt='pictur'/> </Link>
       </div>
       <div className='description'>
         <div className="name">
-        <h4>{props.name}</h4>
+        <h3>{props.name}</h3>
 
         </div>
        
@@ -28,10 +32,10 @@ function ProdCard(props) {
         </div>
 
         <div className='price'>
-        <h4>{props.new_price}</h4><h5><del>{props.old_price}</del></h5>
+        <h4>{props.new_price}</h4>
         </div>
 
-        <button><FaShoppingCart/></button>
+      
 
       </div>
         

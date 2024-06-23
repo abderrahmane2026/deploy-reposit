@@ -1,0 +1,54 @@
+/* AthletesList.css */
+.athletes-list {
+    padding: 20px;
+  }
+  
+  .athletes-grid {
+    justify-content: center;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .athlete-card {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    transition: 0.4s ease;
+  }
+  .athlete-card:hover {
+    transform: scale(1.06);
+   
+  }
+  .athletes-list h1{
+    font-weight: 700;
+    word-spacing: 1px;
+    font-size: 60px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+  
+  .athlete-card img {
+   width: 200px;
+  height: 200px;
+    border-radius: 50%;
+  }
+  
+  .athlete-card h3 {
+    margin: 10px 0;
+  }
+.athletes-list button a{
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+} 
+.athletes-list button{
+    border-radius: 25px;
+} 
+

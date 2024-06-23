@@ -5,7 +5,7 @@ import './card.css';
 
 function ProdCardtest() {
   return (
-    <div className="card-container">
+    <div className="card-containertest">
       <div className='image'>
         <img src={clubpic} alt=''/>
       </div>

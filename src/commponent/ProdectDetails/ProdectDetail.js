@@ -136,7 +136,7 @@ function ProdectDetail() {
       </div>
 
       <div className="related-products mt-3 ms-3">
-        <h2>Related Products</h2>
+        <h2>Related Clubs</h2>
         <div className="related-products-list d-flex mt-5">
           {relatedProducts.map((relatedProduct) => (
             <ProdCard

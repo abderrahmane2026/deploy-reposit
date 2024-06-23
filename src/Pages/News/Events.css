@@ -1,0 +1,41 @@
+/* EventsList.css */
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .event-card {
+    height: 250px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .event-image {
+    flex: 1;
+    max-width: 300px;
+  }
+  
+  .event-image img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .event-details {
+    flex: 2;
+    padding: 20px;
+  }
+  
+  .event-details h2 {
+    margin-top: 0;
+  }
+  
+  .event-details p {
+    margin: 10px 0;
+  }
+  

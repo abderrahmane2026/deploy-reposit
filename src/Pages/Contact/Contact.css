@@ -38,7 +38,7 @@
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #28a745;
+    background-color: #0064fa;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -47,7 +47,7 @@
 }
 
 .btn-submit:hover {
-    background-color: #218838;
+    background-color: #0064fabe;
 }
 
 .response-message {
