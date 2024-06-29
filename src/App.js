@@ -54,8 +54,7 @@ function App() {
         </Route>
        
          <Route path='/Favorit' element={<FavoritPage/>}/>
-        <Route path='/Favorit' element={<Userdeashbord/>}/>
-
+        
         {/* news page */}
         <Route path='/News' element={<NewsPage/>}>
           

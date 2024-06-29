@@ -170,7 +170,7 @@ export default function ShoppingCart() {
                 <option value="">Select Payment Method</option>
                 <option value="credit-card">Credit Card</option>
                 <option value="paypal">PayPal</option>
-                <option value="cash-on-delivery">Cash on Delivery</option>
+                <option value="cash-on-delivery">Cash</option>
               </select>
             </div>
             <button type="submit" className="submit-order-button">
