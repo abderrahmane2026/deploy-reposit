@@ -52,8 +52,8 @@ const OrdersPage = () => {
       <table>
         <thead>
           <tr>
-            <th>Product</th>
-            <th>Quantity</th>
+            <th>Clubs</th>
+           
             <th>Status</th>
             <th>Actions</th>
           </tr>
@@ -62,7 +62,7 @@ const OrdersPage = () => {
           {products.map((product) => (
             <tr key={product._id}>
               <td>{product.name}</td>
-              <td>{product.quantity}</td>
+              
               <td>{product.status}</td>
               <td>
                 {product.status === "noted" && (

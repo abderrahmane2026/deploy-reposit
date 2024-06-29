@@ -45,12 +45,12 @@ export default function ProductList() {
             />
             <div className="product-details">
               <h2 className="product-name">{product.name}</h2>
-              <p className="product-quantity">Quantity: {product.quantity}</p>
+             
             </div>
           </div>
         ))
       ) : (
-        <p>No products found</p>
+        <p>No Clubs found</p>
       )}
     </div>
   );

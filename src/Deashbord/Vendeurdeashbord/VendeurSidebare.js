@@ -43,13 +43,13 @@ export default function VendeurSidebare() {
         <li>
           <Link to="AddProduct">
             <FaBoxOpen />
-            {!isCollapsed && ' Add Product'}
+            {!isCollapsed && ' Add Club'}
           </Link>
         </li>
         <li>
           <Link to="products">
             <FaList />
-            {!isCollapsed && ' List of Products'}
+            {!isCollapsed && ' List of Clubs'}
           </Link>
         </li>
         <li>

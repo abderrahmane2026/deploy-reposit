@@ -81,26 +81,28 @@ const AddProduct = () => {
   }
 
   if (currentUser.role !== "seller") {
-    return <div>You must be a seller to add products.</div>;
+    return <div>You must be a seller to add Club.</div>;
   }
 
   if (currentUser.sellerStatus === "requested") {
     return (
       <div>
-        Your request is being reviewed. You can add products once you are
+        Your request is being reviewed. You can add Club once you are
         accepted.
       </div>
     );
   }
 
   if (currentUser.sellerStatus === "refused") {
-    return <div>Your request has been refused. You cannot add products.</div>;
+    return <div>Your request has been refused. You cannot add Club.</div>;
   }
 
   if (currentUser.sellerStatus === "accepted") {
     return (
       <div className="add-product-container">
-        <h2>Add New Product</h2>
+        <h2>Add New 
+          Club
+        </h2>
         <form onSubmit={handleSubmit} className="add-product-form">
           <div className="form-group">
             <label htmlFor="title">Title</label>
@@ -235,7 +237,7 @@ const AddProduct = () => {
 
           <div className="addproduct-button">
             <button type="submit" className="submit-button">
-              Add Product
+              Add Club
             </button>
           </div>
         </form>
